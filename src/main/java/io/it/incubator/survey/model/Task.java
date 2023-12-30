@@ -2,17 +2,20 @@ package io.it.incubator.survey.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tasks")
 public class Task {
     public Task() {
     }
 
-    public Task(String name, byte[] image, Level level, Type type) {
+    public Task(String name, byte[] image, Level level, Type type, List answers) {
         this.name = name;
         this.image = image;
         this.level = level;
         this.type = type;
+        this.answers= answers;
     }
 
     @Id
@@ -32,6 +35,9 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "type_id")
     private Type type;
+
+    @OneToMany(mappedBy = "task", cascade = {CascadeType.PERSIST})
+    private List<Answer> answers;
 
     public long getId() {
         return id;
@@ -71,5 +77,13 @@ public class Task {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public List<Answer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
     }
 }

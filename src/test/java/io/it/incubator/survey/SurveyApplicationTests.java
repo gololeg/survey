@@ -1,5 +1,6 @@
 package io.it.incubator.survey;
 
+import io.it.incubator.survey.model.Answer;
 import io.it.incubator.survey.model.Task;
 import io.it.incubator.survey.repo.LevelRepository;
 import io.it.incubator.survey.repo.TaskRepository;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
+import java.util.List;
 
 @SpringBootTest
 class SurveyApplicationTests {
@@ -30,9 +32,17 @@ class SurveyApplicationTests {
     @Test
     void testDB() {
         try {
-            taskRepository.save(new Task("new2",
+            Answer a1 = new Answer("name1", "text", "value", true);
+            Answer a2 = new Answer("name2", "text", "value", true);
+            Task task = new Task("new2",
                     FileUtils.readFileToByteArray(new File("d://1.jpg")),
-                    levelRepository.getReferenceById(1), typeRepository.getReferenceById(1)));
+                    levelRepository.getReferenceById(1),
+                    typeRepository.getReferenceById(1),
+                    List.of(a1, a2));
+            a1.setTask(task);
+            a2.setTask(task);
+            taskRepository.save(task);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
