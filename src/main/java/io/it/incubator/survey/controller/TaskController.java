@@ -1,6 +1,6 @@
 package io.it.incubator.survey.controller;
 
-import io.it.incubator.survey.model.Task;
+import io.it.incubator.survey.dto.TaskDto;
 import io.it.incubator.survey.repo.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,8 @@ public class TaskController {
     private TaskRepository taskRepository;
 
     @GetMapping("/tasks")
-    public List<Task> getAllTasks(){
-        return taskRepository.findAll();
+    public List<TaskDto> getAllTasks() {
+        return taskRepository.findAll().stream()
+                .map(t -> t.toDto()).toList();
     }
 }

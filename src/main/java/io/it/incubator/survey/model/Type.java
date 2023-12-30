@@ -1,5 +1,6 @@
 package io.it.incubator.survey.model;
 
+import io.it.incubator.survey.dto.TypeDto;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -42,5 +43,12 @@ public class Type {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public TypeDto toDto() {
+        return TypeDto.builder()
+                .id(getId())
+                .name(getName())
+                .build();
     }
 }

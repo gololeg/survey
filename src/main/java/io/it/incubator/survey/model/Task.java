@@ -1,5 +1,8 @@
 package io.it.incubator.survey.model;
 
+import io.it.incubator.survey.dto.LevelDto;
+import io.it.incubator.survey.dto.TaskDto;
+import io.it.incubator.survey.dto.TypeDto;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,7 +18,7 @@ public class Task {
         this.image = image;
         this.level = level;
         this.type = type;
-        this.answers= answers;
+        this.answers = answers;
     }
 
     @Id
@@ -85,5 +88,22 @@ public class Task {
 
     public void setAnswers(List<Answer> answers) {
         this.answers = answers;
+    }
+
+    public TaskDto toDto() {
+        return TaskDto.builder()
+                .id(getId())
+                .name(getName())
+                .image(getImage())
+                .level(LevelDto.builder()
+                        .id(getLevel().getId())
+                        .name(getLevel().getName())
+                        .build())
+                .type(TypeDto.builder()
+                        .id(getType().getId())
+                        .name(getType().getName())
+                        .build())
+                .answers(getAnswers().stream().map(a -> a.toDto()).toList())
+                .build();
     }
 }

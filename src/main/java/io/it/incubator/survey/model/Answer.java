@@ -1,5 +1,7 @@
 package io.it.incubator.survey.model;
 
+import io.it.incubator.survey.dto.AnswerDto;
+import io.it.incubator.survey.dto.LevelDto;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -85,5 +87,15 @@ public class Answer {
 
     public void setTask(Task task) {
         this.task = task;
+    }
+
+    public AnswerDto toDto(){
+        return AnswerDto.builder()
+                .id(getId())
+                .name(getName())
+                .value(getValue())
+                .text(getText())
+                .isRight(isRight())
+                .build();
     }
 }
