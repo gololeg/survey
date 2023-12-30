@@ -1,14 +1,18 @@
 package io.it.incubator.survey.model;
 
 import jakarta.persistence.*;
+
 @Entity
 @Table(name = "tasks")
 public class Task {
     public Task() {
     }
-    public Task(String name, byte[] image) {
+
+    public Task(String name, byte[] image, Level level, Type type) {
         this.name = name;
         this.image = image;
+        this.level = level;
+        this.type = type;
     }
 
     @Id
@@ -20,6 +24,14 @@ public class Task {
 
     @Column(name = "img")
     private byte[] image;
+
+    @ManyToOne
+    @JoinColumn(name = "level_id")
+    private Level level;
+
+    @ManyToOne
+    @JoinColumn(name = "type_id")
+    private Type type;
 
     public long getId() {
         return id;
@@ -43,5 +55,21 @@ public class Task {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 }
