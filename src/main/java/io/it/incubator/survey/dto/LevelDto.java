@@ -8,4 +8,6 @@ import lombok.Data;
 public class LevelDto {
     private int id;
     private String name;
+
+
 }

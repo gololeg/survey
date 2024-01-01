@@ -30,22 +30,19 @@ class SurveyApplicationTests {
     }
 
     @Test
-    void testDB() {
-        try {
-            Answer a1 = new Answer("name1", "text", "value", true);
-            Answer a2 = new Answer("name2", "text", "value", true);
-            Task task = new Task("new2",
-                    FileUtils.readFileToByteArray(new File("d://1.jpg")),
-                    levelRepository.getReferenceById(1),
-                    typeRepository.getReferenceById(1),
-                    List.of(a1, a2));
-            a1.setTask(task);
-            a2.setTask(task);
-            taskRepository.save(task);
+    void testDB() throws Exception {
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Answer a1 = new Answer("name1", "text", "value", true, null);
+        Answer a2 = new Answer("name2", "text", "value", true, null);
+        Task task = new Task("new2",
+                FileUtils.readFileToByteArray(new File("d://1.jpg")),
+                levelRepository.getReferenceById(1),
+                typeRepository.getReferenceById(1),
+                List.of(a1, a2));
+        a1.setTask(task);
+        a2.setTask(task);
+        taskRepository.save(task);
+
         taskRepository.count();
 
     }

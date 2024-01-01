@@ -1,15 +1,21 @@
 package io.it.incubator.survey.model;
 
 import io.it.incubator.survey.dto.TypeDto;
-import jakarta.persistence.*;
-
-import java.util.List;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "types")
+@Data
+@NoArgsConstructor
 public class Type {
-
-    public Type() {
+    public Type(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     @Id
@@ -17,33 +23,6 @@ public class Type {
 
     @Column(name = "name")
     private String name;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @OneToMany(mappedBy = "type")
-    private List<Task> tasks;
-
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
-    }
 
     public TypeDto toDto() {
         return TypeDto.builder()

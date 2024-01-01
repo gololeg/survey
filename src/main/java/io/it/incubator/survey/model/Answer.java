@@ -1,23 +1,23 @@
 package io.it.incubator.survey.model;
 
 import io.it.incubator.survey.dto.AnswerDto;
-import io.it.incubator.survey.dto.LevelDto;
+import io.it.incubator.survey.dto.TaskDto;
 import jakarta.persistence.*;
-
-import java.util.List;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "answers")
+@Data
+@NoArgsConstructor
 public class Answer {
 
-    public Answer() {
-    }
-
-    public Answer(String name, String text, String value, boolean isRight) {
+    public Answer(String name, String text, String value, boolean isRight, Task task) {
         this.name = name;
         this.text = text;
         this.value = value;
         this.isRight = isRight;
+        this.task = task;
 
     }
 
@@ -41,55 +41,7 @@ public class Answer {
     @JoinColumn(name = "task_id")
     private Task task;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public boolean isRight() {
-        return isRight;
-    }
-
-    public void setRight(boolean right) {
-        isRight = right;
-    }
-
-    public Task getTask() {
-        return task;
-    }
-
-    public void setTask(Task task) {
-        this.task = task;
-    }
-
-    public AnswerDto toDto(){
+    public AnswerDto toDto() {
         return AnswerDto.builder()
                 .id(getId())
                 .name(getName())
