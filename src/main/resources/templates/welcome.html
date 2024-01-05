@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" contenStrt="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+<h2 th:utext="${data.description}"></h2>
+<img th:src="${data.imageStr}"/>
+<div th:if="${data.type.name == 'RADIO'}">
+    <div th:each="answer: ${data.answers}">
+        <input th:name="name" th:value="${answer.value}" type="radio" ><label th:text="${answer.text}"/></input>
+    </div>
+</div>
+<div th:if="${data.type.name == 'CHECKBOX'}">
+    <div th:each="answer: ${data.answers}">
+        <input th:name="name" th:value="${answer.value}" type="checkbox" ><label th:text="${answer.text}"/></input>
+    </div>
+</div>
+</body>
+</html>

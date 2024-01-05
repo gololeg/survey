@@ -7,10 +7,12 @@ import io.it.incubator.survey.repo.TaskRepository;
 import io.it.incubator.survey.repo.TypeRepository;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
+import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.base64.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @SpringBootTest
@@ -34,7 +36,10 @@ class SurveyApplicationTests {
 
         Answer a1 = new Answer("name1", "text", "value", true, null);
         Answer a2 = new Answer("name2", "text", "value", true, null);
-        Task task = new Task("new2",
+byte[] b = FileUtils.readFileToByteArray(new File("d://1.jpg"));
+        System.out.println("jjjjj=" +
+                Base64.toBase64String(b));
+        Task task = new Task(0L, "Task Task Task Task Task ", "new2",
                 FileUtils.readFileToByteArray(new File("d://1.jpg")),
                 levelRepository.getReferenceById(1),
                 typeRepository.getReferenceById(1),

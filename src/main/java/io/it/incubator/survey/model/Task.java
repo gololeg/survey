@@ -15,7 +15,9 @@ import java.util.List;
 @NoArgsConstructor
 public class Task {
 
-    public Task(String name, byte[] image, Level level, Type type, List answers) {
+    public Task(Long id, String description, String name, byte[] image, Level level, Type type, List answers) {
+        this.id = id;
+        this.description = description;
         this.name = name;
         this.image = image;
         this.level = level;
@@ -44,10 +46,14 @@ public class Task {
     @OneToMany(mappedBy = "task", cascade = {CascadeType.PERSIST})
     private List<Answer> answers;
 
+    @Column(name = "description")
+    private String description;
+
 
     public TaskDto toDto() {
         return TaskDto.builder()
                 .id(getId())
+                .description(getDescription())
                 .name(getName())
                 .image(getImage())
                 .level(LevelDto.builder()
