@@ -2,6 +2,7 @@ package io.it.incubator.survey.controller;
 
 import io.it.incubator.survey.dto.TaskDto;
 import io.it.incubator.survey.repo.TaskRepository;
+import io.it.incubator.survey.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,12 +19,17 @@ public class TestController {
     @Autowired
     private TaskRepository taskRepository;
 
-    @GetMapping
+    @Autowired
+    private TaskService taskService;
+            ;@GetMapping
     public ModelAndView getTestData() {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("welcome");
-        mv.getModel().put("data", taskRepository.findById(66L).get().toDto());
         mv.getModel().put("surveyId", UUID.randomUUID().toString().replaceAll("-", ""));
+        var taskIds = taskService.getCurrentTaskIds();
+        mv.getModel().put("taskIds", taskIds);
+        mv.getModel().put("data", taskRepository.findById(taskIds.get(0)).get().toDto());
+        mv.setViewName("welcome");
+        mv.setViewName("welcome");
         return mv;
     }
 
@@ -38,7 +44,7 @@ public class TestController {
 //        model.addAttribute("id", employee.getId());
         ModelAndView mv = new ModelAndView();
         mv.setViewName("welcome");
-        mv.getModel().put("data", taskRepository.findById(66L).get().toDto());
+        mv.getModel().put("data", taskRepository.findById(data.getId()).get().toDto());
         mv.getModel().put("surveyId", surveyId);
 
         return mv;
