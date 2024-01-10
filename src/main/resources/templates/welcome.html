@@ -3,24 +3,18 @@
 <head>
     <meta http-equiv="Content-Type" contenStrt="text/html; charset=UTF-8">
     <title>Insert title here</title>
-    <script>
-document.addEventListener("DOMContentLoaded", (event) => {
-if(!localStorage.getItem("taskIds")){
-localStorage.setItem("taskIds", taskIds.value);
-}
-});
-function next(){
-let array = JSON.parse(localStorage.getItem("taskIds"));
-taskId.value=array[array.indexOf(+taskId.value) + 1]
-}
-    </script>
+
+
 </head>
 <body>
+<p id="demo"></p>
+
 <h2 th:utext="${data.description}"></h2>
 <img th:src="${data.imageStr}"/>
 <form method="POST" th:action="${'/survey/'+surveyId}" th:object="${data}">
-    <input type="hidden" id="taskId" name="id" th:value="${data.id}"/>
-    <input type="hidden" id="taskIds" th:value="${taskIds}"/>
+    <input  type="hidden" id="taskId" name="id" th:value="${data.id}"/>
+    <input th:if="${settings != null}" type="hidden" id="expiredDate" th:value="${settings.expiredDate}"/>
+    <input th:if="${settings != null}" type="hidden" id="taskIds" th:value="${settings.taskIds}"/>
     <div th:if="${data.type.name == 'RADIO'}">
         <div th:each="answer: ${data.answers}">
             <input
@@ -36,5 +30,6 @@ taskId.value=array[array.indexOf(+taskId.value) + 1]
     </div>
     <input onclick="next()" type="submit" value="Next>>>"/>
 </form>
+<script defer src="/task.js"></script>
 </body>
 </html>

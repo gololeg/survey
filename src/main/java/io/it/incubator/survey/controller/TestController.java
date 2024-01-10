@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 @Controller
@@ -21,15 +22,23 @@ public class TestController {
 
     @Autowired
     private TaskService taskService;
-            ;@GetMapping
+    ;
+
+    @GetMapping
     public ModelAndView getTestData() {
         ModelAndView mv = new ModelAndView();
-        mv.getModel().put("surveyId", UUID.randomUUID().toString().replaceAll("-", ""));
-        var taskIds = taskService.getCurrentTaskIds();
-        mv.getModel().put("taskIds", taskIds);
-        mv.getModel().put("data", taskRepository.findById(taskIds.get(0)).get().toDto());
+        var settings = taskService.getSetting();
+        mv.getModel().put("data", taskRepository.findById(settings.getTaskIds().get(0)).get().toDto());
+        mv.getModel().put("surveyId", settings.getSurveyId());
+        mv.getModel().put("settings", settings);
         mv.setViewName("welcome");
-        mv.setViewName("welcome");
+        return mv;
+    }
+
+    @GetMapping(value = "/result")
+    public ModelAndView result() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("result");
         return mv;
     }
 
