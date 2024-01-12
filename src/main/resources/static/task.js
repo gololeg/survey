@@ -34,11 +34,21 @@ var x = setInterval(function() {
     document.getElementById("demo").innerHTML = "EXPIRED";
     localStorage.removeItem("taskIds")
     localStorage.removeItem("expiredDate")
-    window.location.href='/survey/result'
+    window.location.href=w.location.href + '/result'
   }
 }, 1000);
 }
 function next(){
 let array = JSON.parse(localStorage.getItem("taskIds"));
-taskId.value=array[array.indexOf(+taskId.value) + 1]
+let nextIndex = array.indexOf(+taskId.value) + 1;
+if(nextIndex != -1){
+nextTaskId.value=array[nextIndex]
+}else{
+nextTaskId.value=null
+}
+
+}
+
+function stopSurvey(){
+window.location.href=window.location.href + '/result'
 }

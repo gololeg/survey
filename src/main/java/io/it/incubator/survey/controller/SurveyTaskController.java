@@ -2,6 +2,7 @@ package io.it.incubator.survey.controller;
 
 import io.it.incubator.survey.dto.TaskDto;
 import io.it.incubator.survey.repo.TaskRepository;
+import io.it.incubator.survey.service.ClientAnswerService;
 import io.it.incubator.survey.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,19 +11,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.text.SimpleDateFormat;
-import java.util.UUID;
-
 @Controller
 @RequestMapping(value = "/survey")
-public class TestController {
+public class SurveyTaskController {
 
     @Autowired
     private TaskRepository taskRepository;
 
     @Autowired
     private TaskService taskService;
-    ;
+
+@Autowired
+private ClientAnswerService clientAnswerService;
 
     @GetMapping
     public ModelAndView getTestData() {
@@ -35,8 +35,8 @@ public class TestController {
         return mv;
     }
 
-    @GetMapping(value = "/result")
-    public ModelAndView result() {
+    @GetMapping(value = "/{surveyId}/result")
+    public ModelAndView result(@PathVariable String surveyId) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("result");
         return mv;
@@ -45,17 +45,16 @@ public class TestController {
     @RequestMapping(method = RequestMethod.POST, value = "/{surveyId}")
     public ModelAndView submit(@PathVariable String surveyId, @ModelAttribute("data") TaskDto data,
                                BindingResult result, ModelMap model) {
-//        if (result.hasErrors()) {
-//            return "error";
-//        }
-//        model.addAttribute("name", employee.getName());
-//        model.addAttribute("contactNumber", employee.getContactNumber());
-//        model.addAttribute("id", employee.getId());
+        clientAnswerService.saveAnswers(data.getArs(), surveyId, data.getId());
+        if(data.getNextTaskId() == 0){
+            return new ModelAndView("redirect:/survey/" + surveyId + "/result");
+        }
         ModelAndView mv = new ModelAndView();
         mv.setViewName("welcome");
-        mv.getModel().put("data", taskRepository.findById(data.getId()).get().toDto());
+        mv.getModel().put("data", taskRepository.findById(data.getNextTaskId()).get().toDto());
         mv.getModel().put("surveyId", surveyId);
 
         return mv;
+
     }
 }

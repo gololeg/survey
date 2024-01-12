@@ -50,7 +50,7 @@ byte[] b = FileUtils.readFileToByteArray(new File("d://1.jpg"));
                 List.of(a1, a2));
         a1.setTask(task);
         a2.setTask(task);
-       // taskRepository.save(task);
+//        taskRepository.save(task);
 
         taskRepository.count();
 

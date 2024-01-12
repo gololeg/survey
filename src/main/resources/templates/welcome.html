@@ -13,6 +13,7 @@
 <img th:src="${data.imageStr}"/>
 <form method="POST" th:action="${'/survey/'+surveyId}" th:object="${data}">
     <input  type="hidden" id="taskId" name="id" th:value="${data.id}"/>
+    <input  type="hidden" id="nextTaskId" name="nextTaskId" th:value="${data.id}"/>
     <input th:if="${settings != null}" type="hidden" id="expiredDate" th:value="${settings.expiredDate}"/>
     <input th:if="${settings != null}" type="hidden" id="taskIds" th:value="${settings.taskIds}"/>
     <div th:if="${data.type.name == 'RADIO'}">
@@ -28,8 +29,13 @@
             <input th:name="answers" th:value="${answer.id}" type="checkbox"><label th:text="${answer.text}"/></input>
         </div>
     </div>
+    <div align="left">
     <input onclick="next()" type="submit" value="Next>>>"/>
+    </div>
 </form>
+<div align="right">
+    <input onclick="stopSurvey()" type="submit" value="Stop Survey"/>
+</div>
 <script defer src="/task.js"></script>
 </body>
 </html>

@@ -16,6 +16,7 @@ import java.util.List;
 public class TaskDto {
 
     private long id;
+    private long nextTaskId;
     private String name;
     private byte[] image;
     private String imageStr;
