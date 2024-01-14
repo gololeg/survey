@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" contenStrt="text/html; charset=UTF-8">
+  <title>Insert title here</title>
+
+  <script>
+    const toBase64 = file => new Promise((resolve, reject) => { const reader = new FileReader(); reader.readAsDataURL(file); reader.onload = () => resolve(reader.result); reader.onerror = reject; });
+
+       async function showImg(){
+        img.src = await toBase64(file.files[0])
+
+        }
+function showAnswers(){
+}
+function addAnswer(){
+let row = answersTable.insertRow(answersTable.rows.length)
+let cell = row.insertCell(0)
+cell.innerHTML= "<input type='text' name='strAnswers' />"
+}
+</script>
+</head>
+<body>
+
+<h2 th:utext="${task.answers}"></h2>
+<form  th:object="${task}" enctype="multipart/form-data" method="POST" action="/admin/task/save">
+  <table>
+    <tr>
+      <td>Name:</td>
+      <td><input type="text" name="name" id="name"></input></td>
+    </tr>
+    <tr>
+      <td>Description:</td>
+      <td><textarea rows="3" name="description"></textarea></td>
+    </tr>
+    <tr>
+      <td>Image:<input type="file" id="file" onchange="showImg()" name="file" accept="image/png, image/jpeg"/>
+      </td>
+      <td><img id="img"/></td>
+    </tr>
+  </table>
+
+  <label for="answers">Choose a typy:</label>
+
+  <select onchange="showAnswers()" name="type.id" id="types">
+    <option value="1">RADIO</option>
+    <option value="2">CHECKBOX</option>
+  </select>
+  <div id="ans">
+    <input type="button" onclick="addAnswer()" value="Add answer"/>
+    <table id="answersTable">
+      <thead>
+        <td>Text</td>
+      </thead>
+      <tr>
+          <td><input type="text" name="strAnswers" /></td>
+      </tr>
+      <tr>
+        <td><input type="text" name="strAnswers" /></td>
+      </tr>
+    </table>
+  </div>
+  <div><input type="submit" value="SUBMIT"/></div>
+</form>
+</body>
+</html>

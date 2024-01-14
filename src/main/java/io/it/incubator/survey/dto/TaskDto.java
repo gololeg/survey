@@ -7,8 +7,11 @@ import io.it.incubator.survey.model.Type;
 import lombok.Builder;
 import lombok.Data;
 import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.base64.Base64;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -19,11 +22,12 @@ public class TaskDto {
     private long nextTaskId;
     private String name;
     private byte[] image;
-    private String imageStr;
+    private MultipartFile file;
     private LevelDto level;
     private TypeDto type;
     private List<AnswerDto> answers;
     private List<Long> ars;
+    private List<String> strAnswers;
 
     private String description;
 
@@ -46,4 +50,7 @@ public class TaskDto {
         return task;
     }
 
+    public List<AnswerDto> getAnswers() {
+        return answers == null ? new ArrayList<AnswerDto>() : answers;
+    }
 }
