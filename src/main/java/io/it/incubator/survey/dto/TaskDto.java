@@ -27,7 +27,7 @@ public class TaskDto {
     private TypeDto type;
     private List<AnswerDto> answers;
     private List<Long> ars;
-    private List<String> strAnswers;
+    private String strAnswers;
 
     private String description;
 

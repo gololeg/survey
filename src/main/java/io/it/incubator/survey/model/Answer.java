@@ -21,6 +21,12 @@ public class Answer {
 
     }
 
+    public Answer(String text, boolean isRight, Task task) {
+        this.text = text;
+        this.isRight = isRight;
+        this.task = task;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,7 +41,7 @@ public class Answer {
     private String value;
 
     @Column(name = "is_right")
-    private boolean isRight;
+    private Boolean isRight;
 
     @ManyToOne
     @JoinColumn(name = "task_id")
@@ -47,7 +53,7 @@ public class Answer {
                 .name(getName())
                 .value(getValue())
                 .text(getText())
-                .isRight(isRight())
+                .isRight(getIsRight())
                 .build();
     }
 }

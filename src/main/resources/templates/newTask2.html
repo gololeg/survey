@@ -13,16 +13,29 @@
         }
 function showAnswers(){
 }
+function setAnswers(){
+const rows = answersTable.tBodies[0].rows;
+let arr = [];
+for(let i=0;i<rows.length;i++){
+  let obj = {};
+  obj.text = rows[i].cells[0].getElementsByTagName("textarea")[0].value
+  obj.isRight = rows[i].cells[1].getElementsByTagName("input")[0].checked;
+  arr[i]=obj;
+}
+strAnswers.value = JSON.stringify(arr)
+}
 function addAnswer(){
 let row = answersTable.insertRow(answersTable.rows.length)
-let cell = row.insertCell(0)
-cell.innerHTML= "<input type='text' name='strAnswers' />"
+let cell0 = row.insertCell(0)
+let cell1 = row.insertCell(1)
+cell0.innerHTML= "<textarea rows='3'></textarea>"
+cell1.innerHTML= "<input type='checkbox' />"
 }
 </script>
 </head>
 <body>
 
-<h2 th:utext="${task.answers}"></h2>
+<h2 >Creating task</h2>
 <form  th:object="${task}" enctype="multipart/form-data" method="POST" action="/admin/task/save">
   <table>
     <tr>
@@ -40,27 +53,35 @@ cell.innerHTML= "<input type='text' name='strAnswers' />"
     </tr>
   </table>
 
-  <label for="answers">Choose a typy:</label>
-
+  <label for="types">Choose a type:</label>
   <select onchange="showAnswers()" name="type.id" id="types">
     <option value="1">RADIO</option>
     <option value="2">CHECKBOX</option>
   </select>
+  <label for="levels">Choose a level:</label>
+  <select onchange="showAnswers()" name="level.id" id="levels">
+    <option value="1">LOW</option>
+    <option value="2">MIDDLE</option>
+    <option value="3">HIGH</option>
+  </select>
   <div id="ans">
     <input type="button" onclick="addAnswer()" value="Add answer"/>
+    <input type="hidden" id="strAnswers" name="strAnswers"/>
     <table id="answersTable">
       <thead>
-        <td>Text</td>
+      <td>Text</td><td>Is right</td>
       </thead>
       <tr>
-          <td><input type="text" name="strAnswers" /></td>
+        <td><textarea rows="3"></textarea></td>
+        <td><input type="checkbox" /></td>
       </tr>
       <tr>
-        <td><input type="text" name="strAnswers" /></td>
+        <td><textarea rows="3"></textarea></td>
+        <td><input type="checkbox" /></td>
       </tr>
     </table>
   </div>
-  <div><input type="submit" value="SUBMIT"/></div>
+  <div><input onclick="setAnswers()" type="submit" value="SUBMIT"/></div>
 </form>
 </body>
 </html>

@@ -1,9 +1,14 @@
 package io.it.incubator.survey.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.it.incubator.survey.dto.AnswerDto;
 import io.it.incubator.survey.dto.TaskDto;
+import io.it.incubator.survey.service.AdminTaskService;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +22,19 @@ import java.util.List;
 @RequestMapping(value = "/admin")
 public class AdminTaskController {
 
+    @Autowired
+    private AdminTaskService adminTaskService;
+
     @GetMapping(value = "/task/new")
-    public ModelAndView newTask() {
+    public ModelAndView newTask(Model model) {
         ModelAndView mv = new ModelAndView();
-        mv.getModel().put("task", TaskDto.builder().answers(List.of(
+//        mv.getModel().put("task", TaskDto.builder().answers(List.of(
+//                AnswerDto.builder().name("assss").text("qqqqq").build()
+//                )).name("eeeeee").build());
+        model.addAttribute("task", TaskDto.builder().answers(List.of(
                 AnswerDto.builder().name("assss").text("qqqqq").build()
-                )).name("eeeeee").build());
+        )).name("eeeeee").build());
+
         mv.setViewName("newTask2");
         return mv;
     }
@@ -32,9 +44,8 @@ public class AdminTaskController {
             @ModelAttribute("task") TaskDto task,
             BindingResult result, ModelMap model) throws IOException {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("newTask");
-        System.out.println("img=" + Base64.encodeBase64String(task.getFile().getBytes()));
-
+        mv.setViewName("newTask2");
+        adminTaskService.save(task);
         return mv;
 
     }
