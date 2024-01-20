@@ -34,7 +34,7 @@ var x = setInterval(function() {
     document.getElementById("demo").innerHTML = "EXPIRED";
     localStorage.removeItem("taskIds")
     localStorage.removeItem("expiredDate")
-    window.location.href=w.location.href + '/result'
+    window.location.href=window.location.href + '/result'
   }
 }, 1000);
 }
