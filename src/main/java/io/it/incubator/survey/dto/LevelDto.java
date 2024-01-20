@@ -1,9 +1,11 @@
 package io.it.incubator.survey.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class LevelDto {
     private int id;

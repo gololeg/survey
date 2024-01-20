@@ -45,6 +45,7 @@ public class AdminTaskController {
             BindingResult result, ModelMap model) throws IOException {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("newTask2");
+        task.setImage(task.getFile().getBytes());
         adminTaskService.save(task);
         return mv;
 

@@ -53,7 +53,6 @@ public class Answer {
                 .name(getName())
                 .value(getValue())
                 .text(getText())
-                .isRight(getIsRight())
                 .build();
     }
 }

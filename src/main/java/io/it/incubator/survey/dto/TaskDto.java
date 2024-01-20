@@ -4,9 +4,9 @@ import io.it.incubator.survey.model.Answer;
 import io.it.incubator.survey.model.Level;
 import io.it.incubator.survey.model.Task;
 import io.it.incubator.survey.model.Type;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.base64.Base64;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,7 +14,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class TaskDto {
 

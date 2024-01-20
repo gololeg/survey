@@ -31,13 +31,13 @@ public class AdminTaskService {
     @Autowired
     private TypeRepository typeRepository;
 
-    public void save(TaskDto taskDto) throws IOException {
+    public TaskDto save(TaskDto taskDto) throws IOException {
         ObjectMapper om = new ObjectMapper();
         Answer[] arr = om.readValue(taskDto.getStrAnswers(), Answer[].class);
         List<Answer> answers=
         Arrays.asList(om.readValue(taskDto.getStrAnswers(), Answer[].class));
         Task task = new Task(0L, taskDto.getDescription(), "new2",
-                taskDto.getFile().getBytes(),
+                taskDto.getImage(),
                 levelRepository.getReferenceById(taskDto.getLevel().getId()),
                 typeRepository.getReferenceById(taskDto.getType().getId()),
                 answers
@@ -46,6 +46,6 @@ public class AdminTaskService {
         for(Answer a:task.getAnswers()){
             a.setTask(task);
         }
-        taskRepository.save(task);
+        return taskRepository.save(task).toDto();
     }
 }
