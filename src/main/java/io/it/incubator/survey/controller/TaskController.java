@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin(origins = "http://localhost:9000", maxAge = 3600)
 @RestController
 @RequestMapping("/api/v1/")
 public class TaskController {

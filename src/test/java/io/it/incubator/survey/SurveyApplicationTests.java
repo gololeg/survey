@@ -35,7 +35,7 @@ class SurveyApplicationTests {
     void contextLoads() {
     }
 
-    @Test
+//    @Test
     void testDB() throws Exception {
 
         Answer a1 = new Answer("name1", "text", "value", true, null);

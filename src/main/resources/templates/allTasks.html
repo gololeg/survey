@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" contenStrt="text/html; charset=UTF-8">
+  <title>All tasks</title>
+
+
+</head>
+<body>
+<h1>All tasks</h1>
+<div th:each="answer: ${data.answers}">
+  <input th:name="answers" th:value="${answer.id}" type="checkbox"><label th:text="${answer.text}"/></input>
+</div>
+</body>
+</html>

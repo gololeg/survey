@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.it.incubator.survey.dto.AnswerDto;
 import io.it.incubator.survey.dto.TaskDto;
+import io.it.incubator.survey.repo.TaskRepository;
 import io.it.incubator.survey.service.AdminTaskService;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class AdminTaskController {
     @Autowired
     private AdminTaskService adminTaskService;
 
+    @Autowired
+    private TaskRepository taskRepository;
+
     @GetMapping(value = "/task/new")
     public ModelAndView newTask(Model model) {
         ModelAndView mv = new ModelAndView();
@@ -36,6 +40,14 @@ public class AdminTaskController {
         )).name("eeeeee").build());
 
         mv.setViewName("newTask");
+        return mv;
+    }
+
+    @GetMapping(value = "/task/all")
+    public ModelAndView allTasks(Model model) {
+        ModelAndView mv = new ModelAndView();
+        mv.getModel().put("tasks", taskRepository.findAll().stream().map(t->t.toDto()).toList());
+        mv.setViewName("allTasks    e  ");
         return mv;
     }
 
