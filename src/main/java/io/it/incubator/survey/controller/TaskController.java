@@ -4,13 +4,18 @@ import io.it.incubator.survey.dto.TaskDto;
 import io.it.incubator.survey.model.Task;
 import io.it.incubator.survey.repo.TaskRepository;
 import io.it.incubator.survey.service.AdminTaskService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/")
@@ -46,7 +51,11 @@ public class TaskController {
     }
 
     @GetMapping("/tasks/{id}")
-    TaskDto one(@PathVariable Long id) {
+    TaskDto onhe(HttpServletRequest request, @PathVariable Long id) {
+        Iterator<String> it = request.getHeaderNames().asIterator();
+        while (it.hasNext()){
+            System.out.println(it.next());
+        }
         return taskRepository.findById(id).get().toDto();
     }
 }

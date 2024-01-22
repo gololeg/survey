@@ -1,61 +1,61 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script>
-    const toBase64 = file => new Promise((resolve, reject) => { const reader = new FileReader(); reader.readAsDataURL(file); reader.onload = () => resolve(reader.result); reader.onerror = reject; });
-
-       async function showImg(){
-        alert('eee')
-        img.src = await toBase64(file.files[0])
-
-        }
-function showAnswers(){
-alert(types.value)
-}
+  <meta http-equiv="Content-Type" contenStrt="text/html; charset=UTF-8">
+  <title>Insert title here</title>
 
 
-
-
-    </script
 </head>
 <body>
-<h2 th:utext="${task.name}"></h2>
+
+<h2 >Creating task</h2>
 <form  th:object="${task}" enctype="multipart/form-data" method="POST" action="/admin/task/save">
-    <table>
-        <tr>
-            <td>Name:</td>
-            <td><input type="text" name="name" id="name"></input></td>
-        </tr>
-        <tr>
-            <td>Description:</td>
-            <td><textarea rows="3" name="description"></textarea></td>
-        </tr>
-        <tr>
-            <td>Image:<input type="file" id="file" onchange="showImg()" name="file" accept="image/png, image/jpeg"/>
-            </td>
-            <td><img id="img"/></td>
-        </tr>
+  <table>
+    <tr>
+      <td>Name:</td>
+      <td><input type="text" name="name" id="name"></input></td>
+    </tr>
+    <tr>
+      <td>Description:</td>
+      <td><textarea rows="3" name="description"></textarea></td>
+    </tr>
+    <tr>
+      <td>Image:<input type="file" id="file" onchange="showImg()" name="file" accept="image/png, image/jpeg"/>
+      </td>
+      <td><img id="img"/></td>
+    </tr>
+  </table>
+
+  <label for="types">Choose a type:</label>
+  <select onchange="showAnswers()" name="type.id" id="types">
+    <option value="1">RADIO</option>
+    <option value="2">CHECKBOX</option>
+  </select>
+  <label for="levels">Choose a level:</label>
+  <select onchange="showAnswers()" name="level.id" id="levels">
+    <option value="1">LOW</option>
+    <option value="2">MIDDLE</option>
+    <option value="3">HIGH</option>
+  </select>
+  <div id="ans">
+    <input type="button" onclick="addAnswer()" value="Add answer"/>
+    <input type="hidden" id="strAnswers" name="strAnswers"/>
+    <table id="answersTable">
+      <thead>
+      <td>Text</td><td>Is right</td>
+      </thead>
+      <tr>
+        <td><textarea rows="3"></textarea></td>
+        <td><input type="checkbox" /></td>
+      </tr>
+      <tr>
+        <td><textarea rows="3"></textarea></td>
+        <td><input type="checkbox" /></td>
+      </tr>
     </table>
-
-    <label for="answers">Choose a typy:</label>
-
-    <select onchange="showAnswers()" name="type.id" id="types">
-        <option value="1">RADIO</option>
-        <option value="2">CHECKBOX</option>
-    </select>
-    <div id="ans">
-        <table>
-            <tr>
-                <td>name</td>
-            </tr>
-            <tr>
-                <td><input type="text"  th:name="${answers[0].id}" th:value="22"/></td>
-            </tr>
-        </table>
-    </div>
-    <div><input type="submit" value="SUBMIT"/></div>
+  </div>
+  <div><input onclick="setAnswers()" type="submit" value="SUBMIT"/></div>
 </form>
+<script defer src="/newTask.js"></script>
 </body>
 </html>

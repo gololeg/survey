@@ -35,7 +35,7 @@ public class AdminTaskController {
                 AnswerDto.builder().name("assss").text("qqqqq").build()
         )).name("eeeeee").build());
 
-        mv.setViewName("newTask2");
+        mv.setViewName("newTask");
         return mv;
     }
 
@@ -44,7 +44,7 @@ public class AdminTaskController {
             @ModelAttribute("task") TaskDto task,
             BindingResult result, ModelMap model) throws IOException {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("newTask2");
+        mv.setViewName("newTask");
         task.setImage(task.getFile().getBytes());
         adminTaskService.save(task);
         return mv;
