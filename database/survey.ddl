@@ -23,6 +23,79 @@ COMMENT ON DATABASE postgres
     CREATE SCHEMA IF NOT EXISTS survey
         AUTHORIZATION postgres;
 
+ -- Table: survey.levels
+
+                -- DROP TABLE IF EXISTS survey.levels;
+
+                CREATE TABLE IF NOT EXISTS survey.levels
+                (
+                    id integer NOT NULL,
+                    name character varying COLLATE pg_catalog."default" NOT NULL,
+                    CONSTRAINT level_pkey PRIMARY KEY (id)
+                )
+
+                TABLESPACE pg_default;
+
+                ALTER TABLE IF EXISTS survey.levels
+                    OWNER to postgres;
+
+                            -- Table: survey.types
+
+                            -- DROP TABLE IF EXISTS survey.types;
+
+                            CREATE TABLE IF NOT EXISTS survey.types
+                            (
+                                id integer NOT NULL,
+                                name character varying COLLATE pg_catalog."default" NOT NULL,
+                                CONSTRAINT types_pkey PRIMARY KEY (id)
+                            )
+
+                            TABLESPACE pg_default;
+
+                            ALTER TABLE IF EXISTS survey.types
+                                OWNER to postgres;
+
+                        -- Table: survey.tasks
+
+                        -- DROP TABLE IF EXISTS survey.tasks;
+
+                        CREATE TABLE IF NOT EXISTS survey.tasks
+                        (
+                            id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+                            name character varying COLLATE pg_catalog."default",
+                            img bytea,
+                            level_id integer,
+                            type_id integer,
+                            description character varying COLLATE pg_catalog."default",
+                            CONSTRAINT tasks_pkey PRIMARY KEY (id),
+                            CONSTRAINT level_id_fk FOREIGN KEY (level_id)
+                                REFERENCES survey.levels (id) MATCH SIMPLE
+                                ON UPDATE NO ACTION
+                                ON DELETE NO ACTION
+                                NOT VALID,
+                            CONSTRAINT type_id_fk FOREIGN KEY (type_id)
+                                REFERENCES survey.types (id) MATCH SIMPLE
+                                ON UPDATE NO ACTION
+                                ON DELETE NO ACTION
+                                NOT VALID
+                        )
+
+                        TABLESPACE pg_default;
+
+                        ALTER TABLE IF EXISTS survey.tasks
+                            OWNER to postgres;
+
+                        COMMENT ON COLUMN survey.tasks.id
+                            IS 'id';
+
+                        COMMENT ON COLUMN survey.tasks.name
+                            IS 'name';
+
+                        COMMENT ON COLUMN survey.tasks.img
+                            IS 'image';
+
+
+
         -- Table: survey.answers
 
         -- DROP TABLE IF EXISTS survey.answers;
@@ -76,21 +149,6 @@ COMMENT ON DATABASE postgres
             ALTER TABLE IF EXISTS survey.client_answers
                 OWNER to postgres;
 
-                -- Table: survey.levels
-
-                -- DROP TABLE IF EXISTS survey.levels;
-
-                CREATE TABLE IF NOT EXISTS survey.levels
-                (
-                    id integer NOT NULL,
-                    name character varying COLLATE pg_catalog."default" NOT NULL,
-                    CONSTRAINT level_pkey PRIMARY KEY (id)
-                )
-
-                TABLESPACE pg_default;
-
-                ALTER TABLE IF EXISTS survey.levels
-                    OWNER to postgres;
 
                     -- Table: survey.settings
 
@@ -113,57 +171,3 @@ COMMENT ON DATABASE postgres
                     ALTER TABLE IF EXISTS survey.settings
                         OWNER to postgres;
 
-                        -- Table: survey.tasks
-
-                        -- DROP TABLE IF EXISTS survey.tasks;
-
-                        CREATE TABLE IF NOT EXISTS survey.tasks
-                        (
-                            id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
-                            name character varying COLLATE pg_catalog."default",
-                            img bytea,
-                            level_id integer,
-                            type_id integer,
-                            description character varying COLLATE pg_catalog."default",
-                            CONSTRAINT tasks_pkey PRIMARY KEY (id),
-                            CONSTRAINT level_id_fk FOREIGN KEY (level_id)
-                                REFERENCES survey.levels (id) MATCH SIMPLE
-                                ON UPDATE NO ACTION
-                                ON DELETE NO ACTION
-                                NOT VALID,
-                            CONSTRAINT type_id_fk FOREIGN KEY (type_id)
-                                REFERENCES survey.types (id) MATCH SIMPLE
-                                ON UPDATE NO ACTION
-                                ON DELETE NO ACTION
-                                NOT VALID
-                        )
-
-                        TABLESPACE pg_default;
-
-                        ALTER TABLE IF EXISTS survey.tasks
-                            OWNER to postgres;
-
-                        COMMENT ON COLUMN survey.tasks.id
-                            IS 'id';
-
-                        COMMENT ON COLUMN survey.tasks.name
-                            IS 'name';
-
-                        COMMENT ON COLUMN survey.tasks.img
-                            IS 'image';
-
-                            -- Table: survey.types
-
-                            -- DROP TABLE IF EXISTS survey.types;
-
-                            CREATE TABLE IF NOT EXISTS survey.types
-                            (
-                                id integer NOT NULL,
-                                name character varying COLLATE pg_catalog."default" NOT NULL,
-                                CONSTRAINT types_pkey PRIMARY KEY (id)
-                            )
-
-                            TABLESPACE pg_default;
-
-                            ALTER TABLE IF EXISTS survey.types
-                                OWNER to postgres;

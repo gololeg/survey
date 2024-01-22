@@ -1,0 +1,15 @@
+INSERT INTO survey.levels(
+	id, name)
+	VALUES (1, 'LOW');
+	INSERT INTO survey.levels(
+    	id, name)
+    	VALUES (2, ''MIDDLE');
+    	INSERT INTO survey.levels(
+        	id, name)
+        	VALUES (3, ''HIGH'');
+        	INSERT INTO survey.types(
+            	id, name)
+            	VALUES (1, 'RADIO');
+            	INSERT INTO survey.types(
+                            	id, name)
+                            	VALUES (2, 'CHECKBOX');
