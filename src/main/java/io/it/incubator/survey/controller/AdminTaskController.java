@@ -46,8 +46,8 @@ public class AdminTaskController {
     @GetMapping(value = "/task/all")
     public ModelAndView allTasks(Model model) {
         ModelAndView mv = new ModelAndView();
-        mv.getModel().put("tasks", taskRepository.findAll().stream().map(t->t.toDto()).toList());
-        mv.setViewName("allTasks    e  ");
+        mv.getModel().put("tasks", taskRepository.findByOrderByName().stream().map(t->t.toDto()).toList());
+        mv.setViewName("allTasks");
         return mv;
     }
 
