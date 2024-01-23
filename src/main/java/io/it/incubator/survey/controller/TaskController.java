@@ -1,12 +1,16 @@
 package io.it.incubator.survey.controller;
 
+import io.it.incubator.survey.dto.SurveySettingDto;
 import io.it.incubator.survey.dto.TaskDto;
 import io.it.incubator.survey.model.Task;
 import io.it.incubator.survey.repo.TaskRepository;
 import io.it.incubator.survey.service.AdminTaskService;
+import io.it.incubator.survey.service.ClientAnswerService;
+import io.it.incubator.survey.service.TaskService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,13 +32,22 @@ public class TaskController {
     @Autowired
     private AdminTaskService adminTaskService;
 
+    @Autowired
+    private TaskService taskService;
 
+    @Autowired
+    private ClientAnswerService clientAnswerService;
 
 
     @GetMapping("/tasks")
     public List<TaskDto> getAllTasks() {
         return taskRepository.findAll().stream()
                 .map(t -> t.toDto()).toList();
+    }
+
+    @GetMapping("/tasks/start")
+    public SurveySettingDto startSurvey() {
+        return taskService.getSetting();
     }
 
     @GetMapping("/t")
@@ -51,12 +64,15 @@ public class TaskController {
         return adminTaskService.save(newTask);
     }
 
+    @PostMapping("/tasks/{surveyId}")
+    public ResponseEntity<String> saveAnswer(@PathVariable String surveyId,
+                                     @RequestBody TaskDto task) throws IOException {
+        clientAnswerService.saveAnswers(task.getArs(), surveyId, task.getId());
+        return ResponseEntity.ok(surveyId);
+    }
+
     @GetMapping("/tasks/{id}")
-    TaskDto onhe(HttpServletRequest request, @PathVariable Long id) {
-        Iterator<String> it = request.getHeaderNames().asIterator();
-        while (it.hasNext()){
-            System.out.println(it.next());
-        }
+    TaskDto one(@PathVariable Long id) {
         return taskRepository.findById(id).get().toDto();
     }
 }
