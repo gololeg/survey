@@ -6,7 +6,9 @@ import io.it.incubator.survey.repo.AnswerRepository;
 import io.it.incubator.survey.repo.LevelRepository;
 import io.it.incubator.survey.repo.TaskRepository;
 import io.it.incubator.survey.repo.TypeRepository;
+import io.it.incubator.survey.service.TaskService;
 import org.apache.commons.io.FileUtils;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.base64.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -29,10 +32,16 @@ class SurveyApplicationTests {
 
     @Autowired
     AnswerRepository answerRepository;
-
+    @Autowired
+    TaskService taskService;
 
     @Test
     void contextLoads() {
+    }
+
+    @Test
+    void testRandomList() {
+        taskService.getCurrentTaskIds(6, Lists.newArrayList(1L, 2L, 3L));
     }
 
 //    @Test

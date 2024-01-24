@@ -32,4 +32,10 @@ public class Setting {
     @Column(name = "high_level_task_time")
     private int highLevelTaskTime;
 
+    public int getSurveyDuration(int lowCount, int middleCount, int highCount) {
+        return lowCount * this.lowLevelTaskTime
+                + middleCount * this.middleLevelTaskTime
+                + highCount * this.highLevelTaskTime;
+    }
+
 }
