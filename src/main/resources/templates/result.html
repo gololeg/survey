@@ -1,11 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="Content-Type" contenStrt="text/html; charset=UTF-8">
+    <title>Result</title>
+
+
 </head>
 <body>
-Time is expired
+
+<h2>Result</h2>
+<div th:each="res: ${result.results}">
+    <h1 th:text="${'№'+(resStat.index+1)}"></h1>
+    <div th:text="${res.task.description}"></div>
+    <img th:src="${res.task.imageStr}"></img>
+    <h3>Your answer:</h3>
+    <div th:each="answer: ${res.clientAnswers}">
+        <div th:if="${res.task.type.name == 'RADIO'}">
+            <input checked type="radio">
+            <textarea th:text="${answer.text}" th:rows="${answer.rowTextNum}"/>
+            </input>
+        </div>
+        <div th:if="${res.task.type.name == 'CHECKBOX'}">
+            <input checked type="checkbox">
+            <textarea th:text="${answer.text}" th:rows="${answer.rowTextNum}"/>
+            </input>
+
+        </div>
+    </div>
+
+</div>
+
 
 </body>
 </html>

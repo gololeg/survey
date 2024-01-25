@@ -1,6 +1,8 @@
 package io.it.incubator.survey.service;
 
 import io.it.incubator.survey.dto.SurveySettingDto;
+import io.it.incubator.survey.model.ClientSession;
+import io.it.incubator.survey.repo.ClientSessionRepository;
 import io.it.incubator.survey.repo.SettingRepository;
 import io.it.incubator.survey.repo.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ import java.util.stream.Stream;
 public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
+
+    @Autowired
+    private ClientSessionRepository clientSessionRepository;
     @Autowired
     private SettingRepository settingRepository;
 
@@ -54,16 +59,18 @@ public class TaskService {
                 new ArrayList<>(allTasks.stream()
                         .filter(t -> t.getLevel().getName().equals("HIGH"))
                         .map(t -> t.getId()).toList()));
-
+        List<Long> taskIds = Stream.of(taskLowIds, taskMiddleIds, taskHighIds)
+                .flatMap(Collection::stream).collect(Collectors.toList());
+String expiredDate = getExpiredDate(setting.getSurveyDuration(
+        taskLowIds.size()
+        , taskMiddleIds.size()
+        , taskHighIds.size()));
+        String surveyId = UUID.randomUUID().toString().replaceAll("-", "");
+        clientSessionRepository.save(new ClientSession(surveyId, expiredDate, taskIds.toString()));
         return SurveySettingDto.builder()
-                .taskIds(Stream.of(taskLowIds, taskMiddleIds, taskHighIds)
-                        .flatMap(Collection::stream).collect(Collectors.toList()))
-                .surveyId(UUID.randomUUID().toString().replaceAll("-", ""))
-                .expiredDate(getExpiredDate(setting.getSurveyDuration(
-                        taskLowIds.size()
-                , taskMiddleIds.size()
-                , taskHighIds.size()
-                )))
+                .taskIds(taskIds)
+                .surveyId(surveyId)
+                .expiredDate(expiredDate)
                 .build();
     }
 }

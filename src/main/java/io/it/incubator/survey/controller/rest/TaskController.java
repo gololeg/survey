@@ -1,10 +1,13 @@
 package io.it.incubator.survey.controller.rest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import io.it.incubator.survey.dto.ResultDto;
 import io.it.incubator.survey.dto.SurveySettingDto;
 import io.it.incubator.survey.dto.TaskDto;
 import io.it.incubator.survey.repo.TaskRepository;
 import io.it.incubator.survey.service.AdminTaskService;
 import io.it.incubator.survey.service.ClientAnswerService;
+import io.it.incubator.survey.service.ResultService;
 import io.it.incubator.survey.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +33,9 @@ public class TaskController {
     @Autowired
     private ClientAnswerService clientAnswerService;
 
+    @Autowired
+    private ResultService resultService;
+
 
     @GetMapping("/tasks")
     public List<TaskDto> getAllTasks() {
@@ -40,6 +46,11 @@ public class TaskController {
     @GetMapping("/tasks/start")
     public SurveySettingDto startSurvey() {
         return taskService.getSetting();
+    }
+
+    @GetMapping("/tasks/{surveyId}/result")
+    public ResultDto result(@PathVariable String surveyId) throws JsonProcessingException {
+        return resultService.getResult(surveyId);
     }
 
 
