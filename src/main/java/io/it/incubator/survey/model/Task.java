@@ -67,4 +67,12 @@ public class Task {
                 .answers(getAnswers().stream().map(a -> a.toDto()).toList())
                 .build();
     }
+
+    public TaskDto toCommonDto() {
+        return TaskDto.builder()
+                .id(getId())
+                .description(getDescription())
+                .name(getName())
+                .build();
+    }
 }

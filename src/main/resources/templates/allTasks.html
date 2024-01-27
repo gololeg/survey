@@ -3,21 +3,34 @@
 <head>
     <meta http-equiv="Content-Type" contenStrt="text/html; charset=UTF-8">
     <title>All tasks</title>
+    <script>
+        function showImg(a, taskId){
+        getImg(a, taskId)
+        }
+async function getImg(a, taskId) {
+alert(taskId)
+  const response = await fetch("http://localhost:8080/api/v1/tasks/" + taskId);
+  const task = await response.json();
+  a.parentElement.innerHTML="<img src='"+task.imageStr+"'/>";
+}
 
+    </script>
 
 </head>
 <body>
 <h1>All tasks</h1>
-<table>
+<table border="1">
     <thead>
     <td>№</td>
     <td>Name</td>
+    <td>Description</td>
     <td>Image</td>
     </thead>
     <tr  th:each="task: ${tasks}">
         <td th:text="${taskStat.index+1}"></td>
         <td th:text="${task.name}"></td>
-        <td><img th:src="${task.imageStr}"/></td>
+        <td th:text="${task.description}"></td>
+        <td><a th:onclick="'showImg(this,'+${task.id}+')'" href="#">Show</a></td>
     </tr>
 </table>
 </body>
