@@ -3,19 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" contenStrt="text/html; charset=UTF-8">
     <title>All tasks</title>
-    <script>
-        function showImg(a, taskId){
-        getImg(a, taskId)
-        }
-async function getImg(a, taskId) {
-alert(taskId)
-  const response = await fetch("http://localhost:8080/api/v1/tasks/" + taskId);
-  const task = await response.json();
-  a.parentElement.innerHTML="<img src='"+task.imageStr+"'/>";
-}
-
-    </script>
-
+    <script src="/allTasks.js"></script>
 </head>
 <body>
 <h1>All tasks</h1>
