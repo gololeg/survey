@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ClientAnswerRepository extends JpaRepository<ClientAnswer, Long> {
     List<ClientAnswer> findBySurveyIdAndTaskId(String surveyId, Long taskId);
+    List<ClientAnswer> findBySurveyId(String surveyId);
 }

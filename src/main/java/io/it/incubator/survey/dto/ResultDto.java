@@ -11,8 +11,8 @@ import java.util.List;
 @Builder
 public class ResultDto {
     private List<ResultTaskDto> results;
-    private Float lowLevelPercent;
-    private Float middleLevelPercent;
-    private Float highLevelPercent;
-    private Float commonPercent;
+    private float lowLevelPercent;
+    private float middleLevelPercent;
+    private float highLevelPercent;
+    private float commonPercent;
 }

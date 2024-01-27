@@ -1,6 +1,7 @@
 package io.it.incubator.survey;
 
 import io.it.incubator.survey.model.Answer;
+import io.it.incubator.survey.model.ClientAnswer;
 import io.it.incubator.survey.model.Task;
 import io.it.incubator.survey.repo.AnswerRepository;
 import io.it.incubator.survey.repo.LevelRepository;
@@ -17,7 +18,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @SpringBootTest
 class SurveyApplicationTests {
@@ -32,6 +36,8 @@ class SurveyApplicationTests {
 
     @Autowired
     AnswerRepository answerRepository;
+
+
     @Autowired
     TaskService taskService;
 
@@ -44,12 +50,32 @@ class SurveyApplicationTests {
         taskService.getCurrentTaskIds(6, Lists.newArrayList(1L, 2L, 3L));
     }
 
-//    @Test
+    @Test
+    void testToMap() {
+        List<ClientAnswer> list = List.of(new ClientAnswer("", 3, 1)
+                , new ClientAnswer("", 1, 1)
+                , new ClientAnswer("", 1, 1));
+        Map<Long, List<Long>> map = new HashMap<>();
+        for (ClientAnswer ca : list) {
+            if (map.get(ca.getTaskId()) == null) {
+                map.put(ca.getTaskId(), List.of(ca.getAnswerId()));
+            } else {
+                List<Long> answerIds = new ArrayList<>(map.get(ca.getTaskId()));
+                answerIds.add(ca.getAnswerId());
+                map.put(ca.getTaskId(), answerIds);
+            }
+
+        }
+        System.out.println("ddd="+map);
+    }
+
+
+    //    @Test
     void testDB() throws Exception {
 
         Answer a1 = new Answer("name1", "text", "value", true, null);
         Answer a2 = new Answer("name2", "text", "value", true, null);
-byte[] b = FileUtils.readFileToByteArray(new File("d://1.jpg"));
+        byte[] b = FileUtils.readFileToByteArray(new File("d://1.jpg"));
         System.out.println("jjjjj=" +
                 answerRepository.findById(105L).get().getText());
         Task task = new Task(0L, "Task Task Task Task Task ", "new2",
