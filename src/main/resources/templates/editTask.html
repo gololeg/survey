@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" contenStrt="text/html; charset=UTF-8">
+  <title>Edit task</title>
+
+
+</head>
+<body>
+
+<h2 >Editing task</h2>
+<form  th:object="${task}" enctype="multipart/form-data" method="POST"
+       th:action="${'/admin/task/edit/'+task.id}">
+  <table>
+    <tr>
+      <td>Name:</td>
+      <td><input type="text" name="name" th:value="${task.name}" id="name"></input></td>
+    </tr>
+    <tr>
+      <td>Description:</td>
+      <td><textarea rows="3" name="description" th:text="${task.description}"></textarea></td>
+    </tr>
+    <tr>
+      <td>Image:<input type="file" id="file" onchange="showImg()" name="file" accept="image/png, image/jpeg"/>
+      </td>
+      <td><img th:src="${task.imageStr}" id="img"/></td>
+    </tr>
+  </table>
+  <div><input type="submit" value="SAVE"/></div>
+</form>
+<script defer src="/newTask.js"></script>
+</body>
+</html>

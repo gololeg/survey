@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.it.incubator.survey.dto.AnswerDto;
 import io.it.incubator.survey.dto.TaskDto;
+import io.it.incubator.survey.model.Task;
 import io.it.incubator.survey.repo.TaskRepository;
 import io.it.incubator.survey.service.AdminTaskService;
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -48,6 +49,26 @@ public class AdminTaskController {
         ModelAndView mv = new ModelAndView();
         mv.getModel().put("tasks", taskRepository.findByOrderByName().stream().map(t->t.toCommonDto()).toList());
         mv.setViewName("allTasks");
+        return mv;
+    }
+    @GetMapping(value = "/task/edit/{taskId}")
+    public ModelAndView editTasks(@PathVariable Long taskId) {
+        ModelAndView mv = new ModelAndView();
+        mv.getModel().put("task", taskRepository.findById(taskId).get().toDto());
+        mv.setViewName("editTask");
+        return mv;
+    }
+
+    @PostMapping(value = "/task/edit/{taskId}")
+    public ModelAndView editTass(@PathVariable Long taskId, @ModelAttribute("task") TaskDto taskDto) throws IOException {
+        ModelAndView mv = new ModelAndView();
+        Task task = taskRepository.findById(taskId).get();
+        task.setName(taskDto.getName());
+        task.setDescription(taskDto.getDescription());
+        task.setImage(taskDto.getFile().getBytes());
+        taskRepository.save(task);
+        mv.getModel().put("task", taskRepository.findById(taskId).get().toDto());
+        mv.setViewName("editTask");
         return mv;
     }
 

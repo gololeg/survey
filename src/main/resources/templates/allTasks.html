@@ -12,12 +12,14 @@
     <td>№</td>
     <td>Name</td>
     <td>Description</td>
+    <td>Actions</td>
     <td>Image</td>
     </thead>
     <tr  th:each="task: ${tasks}">
         <td th:text="${taskStat.index+1}"></td>
         <td th:text="${task.name}"></td>
         <td th:text="${task.description}"></td>
+        <td><a th:href="'/admin/task/edit/'+${task.id}">Edit</a></td>
         <td><a th:onclick="'showImg(this,'+${task.id}+')'" href="#">Show</a></td>
     </tr>
 </table>
