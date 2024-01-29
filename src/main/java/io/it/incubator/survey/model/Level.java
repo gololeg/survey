@@ -1,12 +1,14 @@
 package io.it.incubator.survey.model;
 
 import io.it.incubator.survey.dto.LevelDto;
-import jakarta.persistence.*;
-import lombok.Builder;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Entity
 @Table(name = "levels")
@@ -14,25 +16,25 @@ import java.util.List;
 @NoArgsConstructor
 public class Level {
 
-    public Level(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+  public Level(int id, String name) {
+    this.id = id;
+    this.name = name;
+  }
 
-    @Id
-    private int id;
+  @Id
+  private int id;
 
-    @Column(name = "name")
-    private String name;
+  @Column(name = "name")
+  private String name;
 
-    @OneToMany(mappedBy = "level")
-    private List<Task> tasks;
+  @OneToMany(mappedBy = "level")
+  private List<Task> tasks;
 
-    public LevelDto toDto() {
-        return LevelDto.builder()
-                .id(getId())
-                .name(getName())
-                .build();
-    }
+  public LevelDto toDto() {
+    return LevelDto.builder()
+        .id(getId())
+        .name(getName())
+        .build();
+  }
 
 }

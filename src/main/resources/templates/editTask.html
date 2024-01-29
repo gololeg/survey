@@ -8,9 +8,9 @@
 </head>
 <body>
 
-<h2 >Editing task</h2>
-<form  th:object="${task}" enctype="multipart/form-data" method="POST"
-       th:action="${'/admin/task/edit/'+task.id}">
+<h2>Editing task</h2>
+<form th:object="${task}" enctype="multipart/form-data" method="POST"
+      th:action="${'/admin/task/edit/'+task.id}">
   <table>
     <tr>
       <td>Name:</td>
@@ -21,7 +21,8 @@
       <td><textarea rows="3" name="description" th:text="${task.description}"></textarea></td>
     </tr>
     <tr>
-      <td>Image:<input type="file" id="file" onchange="showImg()" name="file" accept="image/png, image/jpeg"/>
+      <td>Image:<input type="file" id="file" onchange="showImg()" name="file"
+                       accept="image/png, image/jpeg"/>
       </td>
       <td><img th:src="${task.imageStr}" id="img"/></td>
     </tr>

@@ -1,27 +1,27 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" contenStrt="text/html; charset=UTF-8">
-    <title>All tasks</title>
-    <script src="/allTasks.js"></script>
+  <meta http-equiv="Content-Type" contenStrt="text/html; charset=UTF-8">
+  <title>All tasks</title>
+  <script src="/allTasks.js"></script>
 </head>
 <body>
 <h1>All tasks</h1>
 <table border="1">
-    <thead>
-    <td>№</td>
-    <td>Name</td>
-    <td>Description</td>
-    <td>Actions</td>
-    <td>Image</td>
-    </thead>
-    <tr  th:each="task: ${tasks}">
-        <td th:text="${taskStat.index+1}"></td>
-        <td th:text="${task.name}"></td>
-        <td th:text="${task.description}"></td>
-        <td><a th:href="'/admin/task/edit/'+${task.id}">Edit</a></td>
-        <td><a th:onclick="'showImg(this,'+${task.id}+')'" href="#">Show</a></td>
-    </tr>
+  <thead>
+  <td>№</td>
+  <td>Name</td>
+  <td>Description</td>
+  <td>Actions</td>
+  <td>Image</td>
+  </thead>
+  <tr th:each="task: ${tasks}">
+    <td th:text="${taskStat.index+1}"></td>
+    <td th:text="${task.name}"></td>
+    <td th:text="${task.description}"></td>
+    <td><a th:href="'/admin/task/edit/'+${task.id}">Edit</a></td>
+    <td><a th:onclick="'showImg(this,'+${task.id}+')'" href="#">Show</a></td>
+  </tr>
 </table>
 </body>
 </html>

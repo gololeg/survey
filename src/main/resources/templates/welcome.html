@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" contenStrt="text/html; charset=UTF-8">
-    <title>Insert title here</title>
+  <meta http-equiv="Content-Type" contenStrt="text/html; charset=UTF-8">
+  <title>Insert title here</title>
 
 
 </head>
@@ -12,29 +12,31 @@
 <h2 th:utext="${data.description}"></h2>
 <img th:src="${data.imageStr}"/>
 <form method="POST" th:action="${'/survey/'+surveyId}" th:object="${data}">
-    <input  type="hidden" id="taskId" name="id" th:value="${data.id}"/>
-    <input  type="hidden" id="nextTaskId" name="nextTaskId" th:value="${data.id}"/>
-    <input th:if="${settings != null}" type="hidden" id="expiredDate" th:value="${settings.expiredDate}"/>
-    <input th:if="${settings != null}" type="hidden" id="taskIds" th:value="${settings.taskIds}"/>
-    <div th:if="${data.type.name == 'RADIO'}">
-        <div th:each="answer: ${data.answers}">
-            <input
-                    th:name="ars" th:value="${answer.id}" type="radio">
-            <textarea th:text="${answer.text}" th:rows="${answer.rowTextNum}"/>
-            </input>
-        </div>
+  <input type="hidden" id="taskId" name="id" th:value="${data.id}"/>
+  <input type="hidden" id="nextTaskId" name="nextTaskId" th:value="${data.id}"/>
+  <input th:if="${settings != null}" type="hidden" id="expiredDate"
+         th:value="${settings.expiredDate}"/>
+  <input th:if="${settings != null}" type="hidden" id="taskIds" th:value="${settings.taskIds}"/>
+  <div th:if="${data.type.name == 'RADIO'}">
+    <div th:each="answer: ${data.answers}">
+      <input
+          th:name="ars" th:value="${answer.id}" type="radio">
+      <textarea th:text="${answer.text}" th:rows="${answer.rowTextNum}"/>
+      </input>
     </div>
-    <div th:if="${data.type.name == 'CHECKBOX'}">
-        <div th:each="answer: ${data.answers}">
-            <input th:name="answers" th:value="${answer.id}" type="checkbox"><label th:text="${answer.text}"/></input>
-        </div>
+  </div>
+  <div th:if="${data.type.name == 'CHECKBOX'}">
+    <div th:each="answer: ${data.answers}">
+      <input th:name="answers" th:value="${answer.id}" type="checkbox"><label
+        th:text="${answer.text}"/></input>
     </div>
-    <div align="left">
+  </div>
+  <div align="left">
     <input onclick="next()" type="submit" value="Next>>>"/>
-    </div>
+  </div>
 </form>
 <div align="right">
-    <input onclick="stopSurvey()" type="submit" value="Stop Survey"/>
+  <input onclick="stopSurvey()" type="submit" value="Stop Survey"/>
 </div>
 <script defer src="/task.js"></script>
 </body>

@@ -9,34 +9,39 @@
 <body>
 <h2>Setting</h2>
 <form method="POST" action="/admin/setting" th:object="${setting}">
-  <input  type="hidden" name="name" th:value="${setting.name}"/>
+  <input type="hidden" name="name" th:value="${setting.name}"/>
   <table>
     <tr>
       <td>Low Level Task Count</td>
-      <td><input  type="number" name="lowLevelTaskCount" th:value="${setting.lowLevelTaskCount}"/></td>
+      <td><input type="number" name="lowLevelTaskCount" th:value="${setting.lowLevelTaskCount}"/>
+      </td>
     </tr>
     <tr>
       <td>Middle Level Task Count</td>
-      <td><input  type="number" name="middleLevelTaskCount" th:value="${setting.middleLevelTaskCount}"/></td>
+      <td><input type="number" name="middleLevelTaskCount"
+                 th:value="${setting.middleLevelTaskCount}"/></td>
     </tr>
     <tr>
       <td>High Level Task Count</td>
-      <td><input  type="number" name="highLevelTaskCount" th:value="${setting.highLevelTaskCount}"/></td>
+      <td><input type="number" name="highLevelTaskCount" th:value="${setting.highLevelTaskCount}"/>
+      </td>
     </tr>
     <tr>
       <td>Low Level Task Time</td>
-      <td><input  type="number" name="lowLevelTaskTime" th:value="${setting.lowLevelTaskTime}"/></td>
+      <td><input type="number" name="lowLevelTaskTime" th:value="${setting.lowLevelTaskTime}"/></td>
     </tr>
     <tr>
       <td>Middle Level Task Time</td>
-      <td><input  type="number" name="middleLevelTaskTime" th:value="${setting.middleLevelTaskTime}"/></td>
+      <td><input type="number" name="middleLevelTaskTime"
+                 th:value="${setting.middleLevelTaskTime}"/></td>
     </tr>
     <tr>
       <td>High Level Task Time</td>
-      <td><input  type="number" name="highLevelTaskTime" th:value="${setting.highLevelTaskTime}"/></td>
+      <td><input type="number" name="highLevelTaskTime" th:value="${setting.highLevelTaskTime}"/>
+      </td>
     </tr>
   </table>
-    <input type="submit" value="Save"/>
+  <input type="submit" value="Save"/>
 </form>
 </body>
 </html>

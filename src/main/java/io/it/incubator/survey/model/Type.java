@@ -13,21 +13,22 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Type {
-    public Type(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 
-    @Id
-    private int id;
+  public Type(int id, String name) {
+    this.id = id;
+    this.name = name;
+  }
 
-    @Column(name = "name")
-    private String name;
+  @Id
+  private int id;
 
-    public TypeDto toDto() {
-        return TypeDto.builder()
-                .id(getId())
-                .name(getName())
-                .build();
-    }
+  @Column(name = "name")
+  private String name;
+
+  public TypeDto toDto() {
+    return TypeDto.builder()
+        .id(getId())
+        .name(getName())
+        .build();
+  }
 }

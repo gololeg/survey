@@ -1,16 +1,15 @@
 package io.it.incubator.survey.dto;
 
+import java.util.List;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @Builder
 public class SurveySettingDto {
-    private List<Long> taskIds;
-    private String surveyId;
-    private String expiredDate;
+
+  private List<Long> taskIds;
+  private String surveyId;
+  private String expiredDate;
 
 }

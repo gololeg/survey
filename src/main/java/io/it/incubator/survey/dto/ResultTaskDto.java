@@ -1,8 +1,11 @@
 package io.it.incubator.survey.dto;
 
-import lombok.*;
-
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -10,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class ResultTaskDto {
-    private TaskDto task;
-    private List<AnswerDto> clientAnswers;
+
+  private TaskDto task;
+  private List<AnswerDto> clientAnswers;
 }

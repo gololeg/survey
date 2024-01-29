@@ -1,9 +1,5 @@
 package io.it.incubator.survey.dto;
 
-import io.it.incubator.survey.model.Task;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,18 +8,18 @@ import lombok.Data;
 public class AnswerDto {
 
 
-    private Long id;
-    private String name;
+  private Long id;
+  private String name;
 
-    private String text;
-    private String value;
-    private boolean isRight;
-    private long rowTextNum;
+  private String text;
+  private String value;
+  private boolean isRight;
+  private long rowTextNum;
 
-    public long getRowTextNum() {
+  public long getRowTextNum() {
 
-        return getText().lines().count();
-    }
+    return getText().lines().count();
+  }
 
 //    @Override
 //    public String toString() {

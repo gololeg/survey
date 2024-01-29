@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" contenStrt="text/html; charset=UTF-8">
-    <title>View task</title>
+  <meta http-equiv="Content-Type" contenStrt="text/html; charset=UTF-8">
+  <title>View task</title>
 
 
 </head>
@@ -10,17 +10,18 @@
 
 <h2 th:utext="${task.description}"></h2>
 <img th:src="${task.imageStr}"/>
-    <div th:if="${task.type.name == 'RADIO'}">
-        <div th:each="answer: ${task.answers}">
-            <input th:name="ars" th:value="${answer.id}" type="radio">
-            <textarea th:text="${answer.text}" th:rows="${answer.rowTextNum}"/>
-            </input>
-        </div>
-    </div>
-    <div th:if="${task.type.name == 'CHECKBOX'}">
-        <div th:each="answer: ${task.answers}">
-            <input th:name="answers" th:value="${answer.id}" type="checkbox"><label th:text="${answer.text}"/></input>
-        </div>
-    </div>
+<div th:if="${task.type.name == 'RADIO'}">
+  <div th:each="answer: ${task.answers}">
+    <input th:name="ars" th:value="${answer.id}" type="radio">
+    <textarea th:text="${answer.text}" th:rows="${answer.rowTextNum}"/>
+    </input>
+  </div>
+</div>
+<div th:if="${task.type.name == 'CHECKBOX'}">
+  <div th:each="answer: ${task.answers}">
+    <input th:name="answers" th:value="${answer.id}" type="checkbox"><label
+      th:text="${answer.text}"/></input>
+  </div>
+</div>
 </body>
 </html>

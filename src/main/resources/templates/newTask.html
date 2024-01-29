@@ -8,8 +8,8 @@
 </head>
 <body>
 
-<h2 >Creating task</h2>
-<form  th:object="${task}" enctype="multipart/form-data" method="POST" action="/admin/task/save">
+<h2>Creating task</h2>
+<form th:object="${task}" enctype="multipart/form-data" method="POST" action="/admin/task/save">
   <table>
     <tr>
       <td>Name:</td>
@@ -20,7 +20,8 @@
       <td><textarea rows="3" name="description"></textarea></td>
     </tr>
     <tr>
-      <td>Image:<input type="file" id="file" onchange="showImg()" name="file" accept="image/png, image/jpeg"/>
+      <td>Image:<input type="file" id="file" onchange="showImg()" name="file"
+                       accept="image/png, image/jpeg"/>
       </td>
       <td><img id="img"/></td>
     </tr>
@@ -42,15 +43,16 @@
     <input type="hidden" id="strAnswers" name="strAnswers"/>
     <table id="answersTable">
       <thead>
-      <td>Text</td><td>Is right</td>
+      <td>Text</td>
+      <td>Is right</td>
       </thead>
       <tr>
         <td><textarea rows="3"></textarea></td>
-        <td><input type="checkbox" /></td>
+        <td><input type="checkbox"/></td>
       </tr>
       <tr>
         <td><textarea rows="3"></textarea></td>
-        <td><input type="checkbox" /></td>
+        <td><input type="checkbox"/></td>
       </tr>
     </table>
   </div>

@@ -8,14 +8,15 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class WebConfig {
-    @Bean
-    public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> enableDefaultServlet() {
-        return factory -> factory.setRegisterDefaultServlet(true);
-    }
+
+  @Bean
+  public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> enableDefaultServlet() {
+    return factory -> factory.setRegisterDefaultServlet(true);
+  }
 
 
-    @Bean
-    public ObjectMapper objectMapper() {
-        return new ObjectMapper();
-    }
+  @Bean
+  public ObjectMapper objectMapper() {
+    return new ObjectMapper();
+  }
 }

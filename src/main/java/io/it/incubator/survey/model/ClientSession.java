@@ -15,13 +15,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ClientSession {
 
-    @Id
-    @Column(name = "survey_id")
-    private String surveyId;
+  @Id
+  @Column(name = "survey_id")
+  private String surveyId;
 
-    @Column(name = "expired_date")
-    private String expiredDate;
+  @Column(name = "expired_date")
+  private String expiredDate;
 
-    @Column(name = "task_ids")
-    private String taskIds;
+  @Column(name = "task_ids")
+  private String taskIds;
 }
