@@ -44,6 +44,14 @@ public class AdminTaskController {
         return mv;
     }
 
+    @GetMapping(value = "/task/view/{taskId}")
+    public ModelAndView viewTask(Model model, @PathVariable Long taskId) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("viewTask");
+        mv.getModel().put("task", taskRepository.findById(taskId).get().toDto());
+        return mv;
+    }
+
     @GetMapping(value = "/task/all")
     public ModelAndView allTasks(Model model) {
         ModelAndView mv = new ModelAndView();
