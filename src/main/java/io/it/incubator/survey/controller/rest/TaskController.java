@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.it.incubator.survey.dto.ResultDto;
 import io.it.incubator.survey.dto.SurveySettingDto;
 import io.it.incubator.survey.dto.TaskDto;
+import io.it.incubator.survey.model.Task;
 import io.it.incubator.survey.repo.TaskRepository;
 import io.it.incubator.survey.service.AdminTaskService;
 import io.it.incubator.survey.service.ClientAnswerService;
@@ -57,6 +58,15 @@ public class TaskController {
     @PostMapping("/tasks")
     TaskDto newTask(@RequestBody TaskDto newTask) throws IOException {
         return adminTaskService.save(newTask);
+    }
+
+    @RequestMapping(value="/tasks/{taskId}", method = RequestMethod.POST)
+    public TaskDto editTask(@RequestBody TaskDto taskDto, @PathVariable Long taskId) throws IOException {
+        Task task = taskRepository.findById(taskId).get();
+        task.setName(taskDto.getName());
+        task.setDescription(taskDto.getDescription());
+        task.setImage(taskDto.getFile().getBytes());
+        return taskRepository.save(task).toDto();
     }
 
     @PostMapping("/tasks/{surveyId}")
