@@ -8,6 +8,7 @@ import io.it.incubator.survey.repo.LevelRepository;
 import io.it.incubator.survey.repo.TaskRepository;
 import io.it.incubator.survey.repo.TypeRepository;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class AdminTaskService {
     Answer[] arr = om.readValue(taskDto.getStrAnswers(), Answer[].class);
     List<Answer> answers =
         Arrays.asList(om.readValue(taskDto.getStrAnswers(), Answer[].class));
-    Task task = new Task(0L, taskDto.getDescription(), "new2",
+    Task task = new Task(0L, taskDto.getDescription(), taskDto.getName(),
         taskDto.getImage(),
         levelRepository.getReferenceById(taskDto.getLevel().getId()),
         typeRepository.getReferenceById(taskDto.getType().getId()),
@@ -40,6 +41,7 @@ public class AdminTaskService {
     for (Answer a : task.getAnswers()) {
       a.setTask(task);
     }
+    task.setCreateDate(LocalDateTime.now());
     return taskRepository.save(task).toDto();
   }
 }

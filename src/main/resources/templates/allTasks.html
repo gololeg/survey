@@ -12,6 +12,8 @@
   <td>№</td>
   <td>Name</td>
   <td>Description</td>
+  <td>Type</td>
+  <td>Level</td>
   <td>Actions</td>
   <td>Image</td>
   </thead>
@@ -19,6 +21,8 @@
     <td th:text="${taskStat.index+1}"></td>
     <td th:text="${task.name}"></td>
     <td th:text="${task.description}"></td>
+    <td th:text="${task.type.name}"></td>
+    <td th:text="${task.level.name}"></td>
     <td><a th:href="'/admin/task/edit/'+${task.id}">Edit</a></td>
     <td><a th:onclick="'showImg(this,'+${task.id}+')'" href="#">Show</a></td>
   </tr>

@@ -1,12 +1,10 @@
 package io.it.incubator.survey.controller;
 
-import io.it.incubator.survey.dto.AnswerDto;
 import io.it.incubator.survey.dto.TaskDto;
 import io.it.incubator.survey.model.Task;
 import io.it.incubator.survey.repo.TaskRepository;
 import io.it.incubator.survey.service.AdminTaskService;
 import java.io.IOException;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,12 +30,7 @@ public class AdminTaskController {
   @GetMapping(value = "/task/new")
   public ModelAndView newTask(Model model) {
     ModelAndView mv = new ModelAndView();
-//        mv.getModel().put("task", TaskDto.builder().answers(List.of(
-//                AnswerDto.builder().name("assss").text("qqqqq").build()
-//                )).name("eeeeee").build());
-    model.addAttribute("task", TaskDto.builder().answers(List.of(
-        AnswerDto.builder().name("assss").text("qqqqq").build()
-    )).name("eeeeee").build());
+    model.addAttribute("task", TaskDto.builder().build());
 
     mv.setViewName("newTask");
     return mv;
@@ -55,7 +48,7 @@ public class AdminTaskController {
   public ModelAndView allTasks(Model model) {
     ModelAndView mv = new ModelAndView();
     mv.getModel().put("tasks",
-        taskRepository.findByOrderByName().stream().map(t -> t.toCommonDto()).toList());
+        taskRepository.findByOrderByCreateDateDesc().stream().map(t -> t.toCommonDto()).toList());
     mv.setViewName("allTasks");
     return mv;
   }
@@ -87,9 +80,11 @@ public class AdminTaskController {
       @ModelAttribute("task") TaskDto task,
       BindingResult result, ModelMap model) throws IOException {
     ModelAndView mv = new ModelAndView();
-    mv.setViewName("newTask");
+    mv.setViewName("allTasks");
     task.setImage(task.getFile().getBytes());
     adminTaskService.save(task);
+    mv.getModel().put("tasks",
+        taskRepository.findByOrderByCreateDateDesc().stream().map(t -> t.toCommonDto()).toList());
     return mv;
 
   }

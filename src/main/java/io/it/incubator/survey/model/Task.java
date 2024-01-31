@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,6 +44,8 @@ public class Task {
 
   @Column(name = "img")
   private byte[] image;
+  @Column(name = "create_date")
+  private LocalDateTime createDate;
 
   @ManyToOne
   @JoinColumn(name = "level_id")
@@ -82,6 +85,14 @@ public class Task {
         .id(getId())
         .description(getDescription())
         .name(getName())
+        .level(LevelDto.builder()
+            .id(getLevel().getId())
+            .name(getLevel().getName())
+            .build())
+        .type(TypeDto.builder()
+            .id(getType().getId())
+            .name(getType().getName())
+            .build())
         .build();
   }
 }

@@ -19,8 +19,9 @@
 </div>
 <div th:if="${task.type.name == 'CHECKBOX'}">
   <div th:each="answer: ${task.answers}">
-    <input th:name="answers" th:value="${answer.id}" type="checkbox"><label
-      th:text="${answer.text}"/></input>
+    <input th:name="answers" th:value="${answer.id}" type="checkbox">
+    <textarea th:text="${answer.text}" th:rows="${answer.rowTextNum}"/>
+    </input>
   </div>
 </div>
 </body>
