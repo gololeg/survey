@@ -11,6 +11,7 @@ import io.it.incubator.survey.service.ClientAnswerService;
 import io.it.incubator.survey.service.ResultService;
 import io.it.incubator.survey.service.TaskService;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -46,8 +47,11 @@ public class TaskController {
 
   @GetMapping("/tasks")
   public List<TaskDto> getAllTasks() {
-    return taskRepository.findByOrderByCreateDateDesc().stream()
-        .map(t -> t.toCommonDto()).toList();
+    List<TaskDto> list= taskRepository
+        .findByOrderByCreateDateDesc().stream().map(t -> t.toDto()).toList();
+    return new ArrayList<>(list);
+//        taskRepository.findAll().stream()
+//        .map(t -> t.toCommonDto()).toList();
   }
 
   @GetMapping("/tasks/start")
