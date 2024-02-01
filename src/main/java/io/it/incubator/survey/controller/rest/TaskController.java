@@ -48,7 +48,7 @@ public class TaskController {
   @GetMapping("/tasks")
   public List<TaskDto> getAllTasks() {
     List<TaskDto> list= taskRepository
-        .findByOrderByCreateDateDesc().stream().map(t -> t.toDto()).toList();
+        .findByOrderByCreateDateDesc().stream().map(t -> t.toCommonDto()).toList();
     return new ArrayList<>(list);
 //        taskRepository.findAll().stream()
 //        .map(t -> t.toCommonDto()).toList();
