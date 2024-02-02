@@ -10,5 +10,5 @@
 10.  Execute script survey/database/survey.dml
 11. Open terminal and run 'gradle build' in survey repository.
 12. Go to /survey/build/libs in terminale and start server by running 'java -jar survey-{version}.jar'
-13. Open link
+13. Open link http
 
