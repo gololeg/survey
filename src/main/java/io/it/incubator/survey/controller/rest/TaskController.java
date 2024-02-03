@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:9000", maxAge = 3600)
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/tasks")
 public class TaskController {
 
   @Autowired
@@ -34,18 +34,9 @@ public class TaskController {
 
   @Autowired
   private AdminTaskService adminTaskService;
-
-  @Autowired
-  private TaskService taskService;
-
-  @Autowired
-  private ClientAnswerService clientAnswerService;
-
-  @Autowired
   private ResultService resultService;
 
-
-  @GetMapping("/tasks")
+  @GetMapping
   public List<TaskDto> getAllTasks() {
     List<TaskDto> list= taskRepository
         .findByOrderByCreateDateDesc().stream().map(t -> t.toCommonDto()).toList();
@@ -54,23 +45,12 @@ public class TaskController {
 //        .map(t -> t.toCommonDto()).toList();
   }
 
-  @GetMapping("/tasks/start")
-  public SurveySettingDto startSurvey() {
-    return taskService.getSetting();
-  }
-
-  @GetMapping("/tasks/{surveyId}/result")
-  public ResultDto result(@PathVariable String surveyId) throws JsonProcessingException {
-    return resultService.getResult(surveyId);
-  }
-
-
-  @PostMapping("/tasks")
+  @PostMapping
   TaskDto newTask(@RequestBody TaskDto newTask) throws IOException {
     return adminTaskService.save(newTask);
   }
 
-  @RequestMapping(value = "/tasks/{taskId}", method = RequestMethod.POST)
+  @RequestMapping(value = "/{taskId}", method = RequestMethod.PUT)
   public TaskDto editTask(@RequestBody TaskDto taskDto, @PathVariable Long taskId)
       throws IOException {
     Task task = taskRepository.findById(taskId).get();
@@ -80,15 +60,8 @@ public class TaskController {
     return taskRepository.save(task).toDto();
   }
 
-  @PostMapping("/tasks/{surveyId}")
-  public ResponseEntity<String> saveAnswer(@PathVariable String surveyId,
-      @RequestBody TaskDto task) throws IOException {
-    clientAnswerService.saveAnswers(task.getArs(), surveyId, task.getId());
-    return ResponseEntity.ok(surveyId);
-  }
-
-  @GetMapping("/tasks/{id}")
-  TaskDto one(@PathVariable Long id) {
-    return taskRepository.findById(id).get().toDto();
+  @GetMapping("/{taskId}")
+  TaskDto one(@PathVariable Long taskId) {
+    return taskRepository.findById(taskId).get().toDto();
   }
 }
