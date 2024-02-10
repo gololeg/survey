@@ -9,7 +9,9 @@ import io.it.incubator.survey.repo.TaskRepository;
 import io.it.incubator.survey.repo.TypeRepository;
 import io.it.incubator.survey.service.TaskService;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +20,8 @@ import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 
 @SpringBootTest
 class SurveyApplicationTests {
@@ -38,8 +42,19 @@ class SurveyApplicationTests {
   @Autowired
   TaskService taskService;
 
+  @Autowired
+  ResourceLoader resourceLoader;
+
   @Test
   void contextLoads() {
+  }
+
+  @Test
+  void loadFilesFromResource() throws IOException {
+    Resource classPathResource = resourceLoader.getResource("classpath:/templates");
+    Arrays.stream(classPathResource.getFile().listFiles()).toList().forEach(
+        f->System.out.println(f.getName())
+    );
   }
 
   @Test
