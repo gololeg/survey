@@ -19,13 +19,13 @@ public class SettingController {
   @Autowired
   private SettingRepository settingRepository;
 
-  @GetMapping("/setting")
+  @GetMapping("/settings")
   public Setting get() {
     return settingRepository.findAll().isEmpty() ?
         new Setting("GLOBAL") : settingRepository.findAll().get(0);
   }
 
-  @PostMapping("/setting")
+  @PostMapping("/settings")
   public Setting save(@RequestBody Setting setting) throws IOException {
     setting.setName("GLOBAL");
     return settingRepository.save(setting);

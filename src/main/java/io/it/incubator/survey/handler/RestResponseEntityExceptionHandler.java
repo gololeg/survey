@@ -1,7 +1,7 @@
-package io.it.incubator.survey.filter;
+package io.it.incubator.survey.handler;
 
 import io.it.incubator.survey.dto.ResponseError;
-import org.apache.commons.lang3.exception.ExceptionUtils;
+import io.it.incubator.survey.exception.AuthException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,15 +15,11 @@ public class RestResponseEntityExceptionHandler
     extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(value
-      = {Exception.class})
-  protected ResponseEntity<Object> handleConflict(
+      = { RuntimeException.class})
+  public ResponseEntity<Object> handleConflict(
       RuntimeException ex, WebRequest request) {
     String bodyOfResponse = "This should be application specific";
-    return handleExceptionInternal(ex, ResponseError.builder()
-            .message(ex.getMessage())
-            .localMessage(ex.getLocalizedMessage())
-            .stackTrace(ExceptionUtils.getStackTrace(ex))
-            .build(),
+    return handleExceptionInternal(ex, new ResponseError(ex),
         new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
   }
 }

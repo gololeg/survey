@@ -1,29 +1,44 @@
 package io.it.incubator.survey.filter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.it.incubator.survey.dto.ResponseError;
+import io.it.incubator.survey.exception.AuthException;
+import io.it.incubator.survey.model.Session;
+import io.it.incubator.survey.repo.SessionRepository;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
-/**
- * A servlet filter to log request and response The logging implementation is pretty native and for
- * demonstration only
- *
- * @author hemant
- */
 @Component
 @Order(1)
 public class RequestResponseLoggingFilter implements Filter {
+
+  public RequestResponseLoggingFilter(SessionRepository sessionRepository,
+      ObjectMapper objectMapper) {
+    this.sessionRepository = sessionRepository;
+    this.objectMapper = objectMapper;
+  }
+
+  private static int SESSION_MINUTES_TIMEOUT = 15;
+  private SessionRepository sessionRepository;
+  private ObjectMapper objectMapper;
 
   private final static Logger LOG = LoggerFactory.getLogger(RequestResponseLoggingFilter.class);
 
@@ -42,10 +57,49 @@ public class RequestResponseLoggingFilter implements Filter {
       throws IOException, ServletException {
     HttpServletRequest req = (HttpServletRequest) request;
     HttpServletResponse res = (HttpServletResponse) response;
-    LOG.info("Logging Request:" + req.getHeader("Authorization"));
-//    LOG.info("Logging Request:" + req.getCookies().length);
+    String authErrorMessage = null;
+    if (req.getRequestURI().toString().startsWith("/api/v1/tasks") ||
+        req.getRequestURI().toString().startsWith("/api/v1/settings")) {
+      authErrorMessage = "Auth token defined wrongly";
+      Cookie[] cookies = req.getCookies();
+      if (cookies != null) {
+        Optional<Cookie> authCookie = Arrays.stream(cookies)
+            .filter(c -> "authId".equals(c.getName())).findFirst();
+        if (authCookie.isPresent()) {
+          Optional<Session> optionalSession = sessionRepository.findById(
+              authCookie.get().getValue());
+          if (optionalSession.isPresent()) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.MINUTE, -SESSION_MINUTES_TIMEOUT);
+            System.out.println("date1=" + optionalSession.get().getLastActiveDate());
+            System.out.println(
+                "date2=" + LocalDateTime.ofInstant(calendar.toInstant(), calendar.getTimeZone()
+                    .toZoneId()));
+            if (optionalSession.get().getLastActiveDate()
+                .isBefore(LocalDateTime.ofInstant(calendar.toInstant(), calendar.getTimeZone()
+                    .toZoneId()))) {
+              authErrorMessage = "Token is expired.";
+            } else {
+              Session session = optionalSession.get();
+              session.setLastActiveDate(LocalDateTime.now());
+              sessionRepository.save(session);
+              authErrorMessage = null;
+            }
+
+          }
+        }
+      }
+    }
+    if (authErrorMessage != null) {
+      res.setStatus(HttpStatus.UNAUTHORIZED.value());
+      res.setContentType("application/json");
+      PrintWriter out = res.getWriter();
+      out.print(objectMapper.writeValueAsString(
+          new ResponseError(new AuthException(authErrorMessage))));
+      out.flush();
+      return;
+    }
     chain.doFilter(request, response);
-    LOG.info("Logging Response :{}", res.getContentType());
   }
 
   @Override
