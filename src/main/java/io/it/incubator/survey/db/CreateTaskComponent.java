@@ -19,11 +19,11 @@ public class CreateTaskComponent {
   private TaskRepository taskRepository;
   @Bean
   public void execute() throws IOException {
-    Resource classPathResource = resourceLoader.getResource("classpath:/tasks");
-    Arrays.stream(classPathResource.getFile().listFiles()).toList().forEach(
-        f -> System.out.println(f.getName())
-    );
-    System.out.println("size="+taskRepository.findAll().size());
+//    Resource classPathResource = resourceLoader.getResource("classpath:/tasks");
+//    Arrays.stream(classPathResource.getFile().listFiles()).toList().forEach(
+//        f -> System.out.println(f.getName())
+//    );
+//    System.out.println("size="+taskRepository.findAll().size());
   }
 
 
