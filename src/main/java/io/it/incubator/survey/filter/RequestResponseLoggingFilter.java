@@ -63,7 +63,7 @@ public class RequestResponseLoggingFilter implements Filter {
       authErrorMessage = "Auth token defined wrongly";
       Cookie[] cookies = req.getCookies();
       if (cookies != null) {
-        System.out.println("cookies="+objectMapper.writeValueAsString(cookies));
+        System.out.println("cookies=" + objectMapper.writeValueAsString(cookies));
         Optional<Cookie> authCookie = Arrays.stream(cookies)
             .filter(c -> "authId".equals(c.getName())).findFirst();
         if (authCookie.isPresent()) {
@@ -93,7 +93,10 @@ public class RequestResponseLoggingFilter implements Filter {
     }
     if (authErrorMessage != null) {
       res.setStatus(HttpStatus.UNAUTHORIZED.value());
+//      res.setStatus(200);
       res.setContentType("application/json");
+      res.setHeader("Access-Control-Allow-Origin", "http://localhost:9000");
+      res.setHeader("Access-Control-Allow-Credentials", "true");
       PrintWriter out = res.getWriter();
       out.print(objectMapper.writeValueAsString(
           new ResponseError(new AuthException(authErrorMessage))));
