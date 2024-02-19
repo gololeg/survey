@@ -15,11 +15,13 @@ public class RestResponseEntityExceptionHandler
     extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(value
-      = { RuntimeException.class})
+      = {RuntimeException.class})
   public ResponseEntity<Object> handleConflict(
       RuntimeException ex, WebRequest request) {
     String bodyOfResponse = "This should be application specific";
     return handleExceptionInternal(ex, new ResponseError(ex),
-        new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+        new HttpHeaders(),
+        ex instanceof AuthException ? HttpStatus.UNAUTHORIZED : HttpStatus.INTERNAL_SERVER_ERROR,
+        request);
   }
 }
