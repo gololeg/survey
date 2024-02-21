@@ -91,7 +91,7 @@ public class RequestResponseLoggingFilter implements Filter {
         }
       }
     }
-    if (authErrorMessage != null) {
+    if (authErrorMessage != null && !"OPTIONS".equals(req.getMethod())) {
       res.setStatus(HttpStatus.UNAUTHORIZED.value());
 //      res.setStatus(200);
       res.setContentType("application/json");
