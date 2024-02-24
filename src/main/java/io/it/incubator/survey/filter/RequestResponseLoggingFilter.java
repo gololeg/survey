@@ -31,14 +31,16 @@ import org.springframework.stereotype.Component;
 public class RequestResponseLoggingFilter implements Filter {
 
   public RequestResponseLoggingFilter(SessionRepository sessionRepository,
-      ObjectMapper objectMapper) {
+      ObjectMapper objectMapper, String adminUrl) {
     this.sessionRepository = sessionRepository;
     this.objectMapper = objectMapper;
+    this.adminUrl = adminUrl;
   }
 
   private static int SESSION_MINUTES_TIMEOUT = 15;
   private SessionRepository sessionRepository;
   private ObjectMapper objectMapper;
+  private String adminUrl;
 
   private final static Logger LOG = LoggerFactory.getLogger(RequestResponseLoggingFilter.class);
 
@@ -95,7 +97,7 @@ public class RequestResponseLoggingFilter implements Filter {
       res.setStatus(HttpStatus.UNAUTHORIZED.value());
 //      res.setStatus(200);
       res.setContentType("application/json");
-      res.setHeader("Access-Control-Allow-Origin", "http://localhost:9000");
+      res.setHeader("Access-Control-Allow-Origin", adminUrl);
       res.setHeader("Access-Control-Allow-Credentials", "true");
       PrintWriter out = res.getWriter();
       out.print(objectMapper.writeValueAsString(
