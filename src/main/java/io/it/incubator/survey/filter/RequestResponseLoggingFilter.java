@@ -22,12 +22,10 @@ import java.util.Calendar;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 @Component
-@Order(1)
 public class RequestResponseLoggingFilter implements Filter {
 
   public RequestResponseLoggingFilter(SessionRepository sessionRepository,
@@ -60,8 +58,9 @@ public class RequestResponseLoggingFilter implements Filter {
     HttpServletRequest req = (HttpServletRequest) request;
     HttpServletResponse res = (HttpServletResponse) response;
     String authErrorMessage = null;
+    boolean isAuthMeReq = req.getRequestURI().toString().equals("/api/v1/auth/me");
     if (req.getRequestURI().toString().startsWith("/api/v1/tasks") ||
-        req.getRequestURI().toString().startsWith("/api/v1/settings")) {
+        req.getRequestURI().toString().startsWith("/api/v1/settings") || isAuthMeReq) {
       authErrorMessage = "Auth token defined wrongly";
       Cookie[] cookies = req.getCookies();
       if (cookies != null) {
@@ -83,9 +82,12 @@ public class RequestResponseLoggingFilter implements Filter {
                     .toZoneId()))) {
               authErrorMessage = "Token is expired.";
             } else {
-              Session session = optionalSession.get();
-              session.setLastActiveDate(LocalDateTime.now());
-              sessionRepository.save(session);
+              if (!isAuthMeReq) {
+
+                Session session = optionalSession.get();
+                session.setLastActiveDate(LocalDateTime.now());
+                sessionRepository.save(session);
+              }
               authErrorMessage = null;
             }
 

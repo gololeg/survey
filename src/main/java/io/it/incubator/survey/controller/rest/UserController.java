@@ -6,6 +6,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import javax.naming.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,11 @@ public class UserController {
       throws AuthenticationException {
     response.addCookie(new Cookie("authId", userService.auth(user)));
 
+    return true;
+  }
+
+  @GetMapping(value = "/auth/me")
+  public boolean authMe() {
     return true;
   }
 

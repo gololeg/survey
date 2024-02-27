@@ -29,7 +29,7 @@ public class WebConfig implements WebMvcConfigurer {
     registry.addMapping("/api/v1/settings/**")
         .allowedOrigins(adminUrl)
         .allowCredentials(true);
-    registry.addMapping("/api/v1/login")
+    registry.addMapping("/api/v1/login/**")
         .allowedOrigins(adminUrl)
         .allowCredentials(true);
     registry.addMapping("/api/v1/survey/**")
@@ -60,8 +60,8 @@ public class WebConfig implements WebMvcConfigurer {
     registrationBean.setFilter(
         new RequestResponseLoggingFilter(sessionRepository, objectMapper(), adminUrl));
 
-    registrationBean.addUrlPatterns("/api/v1/tasks/*");
-    registrationBean.setOrder(1);
+    registrationBean.addUrlPatterns("/test/*");
+//    registrationBean.setOrder(2);
 
     return registrationBean;
   }
