@@ -35,6 +35,9 @@ public class WebConfig implements WebMvcConfigurer {
     registry.addMapping("/api/v1/survey/**")
         .allowedOrigins(adminUrl)
         .allowCredentials(true);
+    registry.addMapping("/api/v1/auth/**")
+        .allowedOrigins(adminUrl)
+        .allowCredentials(true);
   }
 
   @Bean
