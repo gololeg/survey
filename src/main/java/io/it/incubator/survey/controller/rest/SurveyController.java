@@ -31,9 +31,9 @@ public class SurveyController {
   @Autowired
   private ResultService resultService;
 
-  @GetMapping("/start")
-  public SurveySettingDto startSurvey() {
-    return taskService.getSetting();
+  @GetMapping("/start/{email}")
+  public SurveySettingDto startSurvey(@PathVariable String email) {
+    return taskService.getSetting(email);
   }
 
   @GetMapping("/{surveyId}/result")

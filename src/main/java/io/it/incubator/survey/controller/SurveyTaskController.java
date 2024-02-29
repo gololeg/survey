@@ -33,16 +33,16 @@ public class SurveyTaskController {
   @Autowired
   private ClientAnswerService clientAnswerService;
 
-  @GetMapping
-  public ModelAndView getTestData() {
-    ModelAndView mv = new ModelAndView();
-    var settings = taskService.getSetting();
-    mv.getModel().put("data", taskRepository.findById(settings.getTaskIds().get(0)).get().toDto());
-    mv.getModel().put("surveyId", settings.getSurveyId());
-    mv.getModel().put("settings", settings);
-    mv.setViewName("welcome");
-    return mv;
-  }
+//  @GetMapping
+//  public ModelAndView getTestData() {
+//    ModelAndView mv = new ModelAndView();
+//    var settings = taskService.getSetting();
+//    mv.getModel().put("data", taskRepository.findById(settings.getTaskIds().get(0)).get().toDto());
+//    mv.getModel().put("surveyId", settings.getSurveyId());
+//    mv.getModel().put("settings", settings);
+//    mv.setViewName("welcome");
+//    return mv;
+//  }
 
   @GetMapping(value = "/{surveyId}/result")
   public ModelAndView result(@PathVariable String surveyId) throws JsonProcessingException {

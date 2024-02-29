@@ -26,6 +26,8 @@ public class TaskService {
   @Autowired
   private ClientSessionRepository clientSessionRepository;
   @Autowired
+  private AccessService accessService;
+  @Autowired
   private SettingRepository settingRepository;
 
   public List<Long> getCurrentTaskIds(int count, List<Long> ids) {
@@ -50,7 +52,8 @@ public class TaskService {
     return f.format(calendar.getTime());
   }
 
-  public SurveySettingDto getSetting() {
+  public SurveySettingDto getSetting(String email) {
+    accessService.checkAccess(email);
     var setting = settingRepository.findById("GLOBAL").get();
     var allTasks = taskRepository.findAll();
     var taskLowIds = getCurrentTaskIds(setting.getLowLevelTaskCount(),
