@@ -48,7 +48,7 @@ public class TaskService {
   private String getExpiredDate(int seconds) {
     Calendar calendar = Calendar.getInstance(); // gets a calendar using the default time zone and locale.
     calendar.add(Calendar.SECOND, seconds);
-    SimpleDateFormat f = new SimpleDateFormat("MM.DD.yyyy HH:mm:ss");
+    SimpleDateFormat f = new SimpleDateFormat("MM.dd.yyyy HH:mm:ss");
     return f.format(calendar.getTime());
   }
 
