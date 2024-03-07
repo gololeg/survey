@@ -32,4 +32,10 @@ public class UserController {
     return true;
   }
 
+  @GetMapping(value = "/logout")
+  public boolean logout(HttpServletResponse response) {
+    response.addCookie(new Cookie("authId", null));
+    return true;
+  }
+
 }
