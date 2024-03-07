@@ -4,10 +4,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.it.incubator.survey.dto.ResultDto;
 import io.it.incubator.survey.dto.SurveySettingDto;
 import io.it.incubator.survey.dto.TaskDto;
+import io.it.incubator.survey.service.AccessService;
 import io.it.incubator.survey.service.ClientAnswerService;
 import io.it.incubator.survey.service.ResultService;
 import io.it.incubator.survey.service.TaskService;
 import java.io.IOException;
+import java.text.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,6 +32,8 @@ public class SurveyController {
 
   @Autowired
   private ResultService resultService;
+  @Autowired
+  private AccessService accessService;
 
   @GetMapping("/start/{email}")
   public SurveySettingDto startSurvey(@PathVariable String email) {
@@ -43,7 +47,9 @@ public class SurveyController {
 
   @PostMapping("/{surveyId}")
   public ResponseEntity<String> saveAnswer(@PathVariable String surveyId,
-      @RequestBody TaskDto task) throws IOException {
+      @RequestBody TaskDto task) throws IOException, ParseException {
+    accessService.checkTimeout(surveyId);
+
     clientAnswerService.saveAnswers(task.getArs(), surveyId, task.getId());
     return ResponseEntity.ok(surveyId);
   }
