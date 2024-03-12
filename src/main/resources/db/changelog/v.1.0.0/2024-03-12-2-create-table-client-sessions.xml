@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+  <changeSet logicalFilePath="2024-03-12-2-create-table-client-sessions"
+    id="2024-03-12-2-create-table-client-sessions" author="oleg.g">
+    <createTable tableName="client_sessions" schemaName="survey">
+      <column name="survey_id" type="varchar(100)">
+        <constraints nullable="false" primaryKey="true"/>
+      </column>
+      <column name="expired_date" type="varchar(100)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="task_ids" type="varchar(100)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>

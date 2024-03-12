@@ -29,6 +29,7 @@ dependencies {
 
 	compileOnly 'org.projectlombok:lombok:1.18.30'
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.2.0'
+	implementation group: 'org.liquibase', name: 'liquibase-core', version: '4.26.0'
 
 
 }

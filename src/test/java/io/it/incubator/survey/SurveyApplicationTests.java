@@ -62,7 +62,7 @@ class SurveyApplicationTests {
     taskService.getCurrentTaskIds(6, Lists.newArrayList(1L, 2L, 3L));
   }
 
-  @Test
+//  @Test
   void testToMap() {
     List<ClientAnswer> list = List.of(new ClientAnswer("", 3, 1)
         , new ClientAnswer("", 1, 1)

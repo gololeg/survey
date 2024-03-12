@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+  <changeSet logicalFilePath="2024-03-12-1-create-table-settings"
+    id="2024-03-10-1-create-table-settings" author="oleg.g">
+    <createTable tableName="settings" schemaName="survey">
+      <column name="name" type="varchar(100)">
+        <constraints nullable="false" primaryKey="true"/>
+      </column>
+      <column name="low_level_task_count" type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="middle_level_task_count" type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="high_level_task_count" type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="low_level_task_time" type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="middle_level_task_time" type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="high_level_task_time" type="int">
+        <constraints nullable="false"/>
+      </column>
+
+    </createTable>
+    <insert tableName="settings" schemaName="survey">
+      <column name="name" value="GLOBAL"/>
+      <column name="low_level_task_count" value="2"/>
+      <column name="middle_level_task_count" value="2"/>
+      <column name="high_level_task_count" value="2"/>
+      <column name="low_level_task_time" value="2"/>
+      <column name="middle_level_task_time" value="2"/>
+      <column name="high_level_task_time" value="2"/>
+    </insert>
+  </changeSet>
+
+</databaseChangeLog>

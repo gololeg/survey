@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+  <changeSet logicalFilePath="2024-03-10-2-create-table-users"
+    id="2024-03-10-2-create-table-users" author="oleg.g">
+    <createTable tableName="users" schemaName="survey">
+      <column name="login" type="varchar(100)">
+        <constraints nullable="false" primaryKey="true"/>
+      </column>
+      <column name="password" type="varchar(100)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <insert tableName="users" schemaName="survey">
+      <column name="login" value="admin"/>
+      <column name="password" value="admin"/>
+    </insert>
+  </changeSet>
+
+</databaseChangeLog>

@@ -25,7 +25,7 @@ public class CreateTaskComponent {
   @Autowired
   private TaskRepository taskRepository;
 
-  @Bean
+//  @Bean
   public boolean execute() throws IOException {
     Resource classPathResource = resourceLoader.getResource("classpath:/static/");
     byte[] binaryData = FileCopyUtils.copyToByteArray(classPathResource.getInputStream());
