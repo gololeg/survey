@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.it.incubator.survey.dto.ResultDto;
 import io.it.incubator.survey.dto.SurveySettingDto;
 import io.it.incubator.survey.dto.TaskDto;
+import io.it.incubator.survey.repo.TaskRepository;
 import io.it.incubator.survey.service.AccessService;
 import io.it.incubator.survey.service.ClientAnswerService;
 import io.it.incubator.survey.service.ResultService;
@@ -26,6 +27,9 @@ public class SurveyController {
 
   @Autowired
   private TaskService taskService;
+
+  @Autowired
+  private TaskRepository taskRepository;
 
   @Autowired
   private ClientAnswerService clientAnswerService;
@@ -52,6 +56,11 @@ public class SurveyController {
 
     clientAnswerService.saveAnswers(task.getArs(), surveyId, task.getId());
     return ResponseEntity.ok(surveyId);
+  }
+
+  @GetMapping("/task/{taskId}")
+  public ResponseEntity<TaskDto> one(@PathVariable Long taskId) {
+    return ResponseEntity.ok(taskRepository.findById(taskId).get().toDto());
   }
 
 }
