@@ -1,5 +1,14 @@
 version: '3.8'
 services:
+  client-frontend:
+    image: frontend:0.0.1
+    build: ./survey-ui
+    restart: always
+    ports:
+      - '3000:3000'
+    volumes:
+      - /app/node_modules
+      - ./survey-ui:/app
   client-backend:
     image: client
     build:
