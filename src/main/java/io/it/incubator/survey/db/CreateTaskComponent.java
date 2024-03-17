@@ -1,12 +1,12 @@
 package io.it.incubator.survey.db;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.it.incubator.survey.model.Level;
+import io.it.incubator.survey.model.Task;
 import io.it.incubator.survey.repo.TaskRepository;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,36 +25,30 @@ public class CreateTaskComponent {
   @Autowired
   private TaskRepository taskRepository;
 
-@Bean
+  @Bean
   public boolean execute() throws IOException {
-    Resource classPathResource = resourceLoader.getResource("classpath:/static/");
-    byte[] binaryData = FileCopyUtils.copyToByteArray(classPathResource.getInputStream());
+    Resource classPathResource = resourceLoader.getResource("classpath:/tasks/tasksForLoad.json");
     File f = File.createTempFile("prefix-", "-suffix");
     FileUtils.copyInputStreamToFile(classPathResource.getInputStream(), f);
-    getResources("classpath:/static/", resourceLoader).forEach(n -> System.out.println(n.getName()));
-    System.out.println(getResources("classpath:/tasks/", resourceLoader).size());
-//    Arrays.stream(new File(new String(binaryData)).listFiles()).toList().forEach(
-//        f -> System.out.println(f.getName())
-//    );
-    System.out.println("size=" + taskRepository.findAll().size());
+    ObjectMapper om = new ObjectMapper();
+    Task[] tasks = om.readValue(f, Task[].class);
+    List<String> existingTaskNames = taskRepository.findAll().stream().map(t -> t.getName())
+        .toList();
+    for (Task t : tasks) {
+      if (!existingTaskNames.contains(t.getName())) {
+        try {
+          classPathResource = resourceLoader.getResource("classpath:/tasks/" + t.getName());
+          byte[] binaryData = FileCopyUtils.copyToByteArray(classPathResource.getInputStream());
+          t.setImage(binaryData);
+        }catch (Exception ex){
+
+        }
+        t.getAnswers().forEach(a -> a.setTask(t));
+        t.setCreateDate(LocalDateTime.now());
+        taskRepository.save(t);
+      }
+    }
     return true;
   }
 
-  public static List<File> getResources(final String path, ResourceLoader loader) throws IOException {
-    try (
-        final InputStream is = loader.getResource(path).getInputStream();
-        final InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
-        final BufferedReader br = new BufferedReader(isr)) {
-      return br.lines()
-          .map(l -> path + "/" + l)
-          .map(r -> {
-            try {
-              return loader.getResource(r).getFile();
-            } catch (IOException e) {
-              throw new RuntimeException(e);
-            }
-          })
-          .toList();
-    }
-  }
 }

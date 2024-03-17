@@ -60,14 +60,17 @@ public class ResultService {
       if (map.get(task.getId()) == null) {
         break;
       }
+      String taskType = task.getType().getName();
+      boolean isRadio = "RADIO".equals(taskType);
       float percentForOne = 100 / task.getAnswers().size();
       for (Answer answer : task.getAnswers()) {
         if (answer.getIsRight() && map.get(task.getId()).contains(answer.getId())) {
-          p = percentForOne + p;
+          p = (isRadio ? 100 : percentForOne) + p;
         } else if (!answer.getIsRight() && !map.get(task.getId()).contains(answer.getId())) {
-          p = percentForOne + p;
+          p = (isRadio ? 0 : percentForOne) + p;
         }
       }
+      System.out.println("percent = " + p);
     }
     return p / tasks.size();
   }

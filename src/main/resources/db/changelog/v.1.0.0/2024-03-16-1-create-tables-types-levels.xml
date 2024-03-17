@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+  <changeSet logicalFilePath="2024-03-16-1-create-tables-types-levels"
+    id="2024-03-16-1-create-tables-types-levels" author="oleg.g">
+    <createTable tableName="types" schemaName="survey">
+      <column name="id" type="int">
+        <constraints nullable="false" primaryKey="true"/>
+      </column>
+      <column name="name" type="varchar(100)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <insert tableName="types" schemaName="survey">
+      <column name="id" value="1"/>
+      <column name="name" value="CHECKBOX"/>
+    </insert>
+    <insert tableName="types" schemaName="survey">
+      <column name="id" value="2"/>
+      <column name="name" value="RADIO"/>
+    </insert>
+    <createTable tableName="levels" schemaName="survey">
+      <column name="id" type="int">
+        <constraints nullable="false" primaryKey="true"/>
+      </column>
+      <column name="name" type="varchar(100)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <insert tableName="levels" schemaName="survey">
+      <column name="id" value="1"/>
+      <column name="name" value="LOW"/>
+    </insert>
+    <insert tableName="levels" schemaName="survey">
+      <column name="id" value="2"/>
+      <column name="name" value="MIDDLE"/>
+    </insert>
+    <insert tableName="levels" schemaName="survey">
+      <column name="id" value="3"/>
+      <column name="name" value="HIGH"/>
+    </insert>
+  </changeSet>
+
+</databaseChangeLog>

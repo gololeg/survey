@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+  <changeSet logicalFilePath="2024-03-16-2-create-table-tasks"
+    id="2024-03-16-2-create-table-tasks" author="oleg.g">
+    <createTable tableName="tasks" schemaName="survey">
+      <column name="id" type="int">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+      <column name="name" type="varchar(100)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="text" type="varchar(100)">
+      </column>
+      <column name="description" type="varchar(100)">
+      </column>
+      <column name="value" type="varchar(100)">
+      </column>
+      <column name="img" type="bytea">
+      </column>
+      <column name="create_date" type="datetime">
+        <constraints nullable="false"/>
+      </column>
+      <column name="type_id" type="int">
+        <constraints nullable="false" foreignKeyName="fk_tasks_type" references="survey.types(id)"/>
+      </column>
+      <column name="level_id" type="int">
+        <constraints nullable="false" foreignKeyName="fk_tasks_level" references="survey.levels(id)"/>
+      </column>
+    </createTable>
+    <addAutoIncrement tableName="tasks"
+      columnDataType="int" schemaName="survey" startWith="1"
+      columnName="id"/>
+  </changeSet>
+
+</databaseChangeLog>

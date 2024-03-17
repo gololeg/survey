@@ -1,15 +1,18 @@
 package io.it.incubator.survey.controller.rest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.it.incubator.survey.dto.ResultDto;
 import io.it.incubator.survey.dto.SurveySettingDto;
 import io.it.incubator.survey.dto.TaskDto;
+import io.it.incubator.survey.model.Task;
 import io.it.incubator.survey.repo.TaskRepository;
 import io.it.incubator.survey.service.AccessService;
 import io.it.incubator.survey.service.ClientAnswerService;
 import io.it.incubator.survey.service.ResultService;
 import io.it.incubator.survey.service.TaskService;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +43,8 @@ public class SurveyController {
   private AccessService accessService;
 
   @GetMapping("/start/{email}")
-  public SurveySettingDto startSurvey(@PathVariable String email) {
+  public SurveySettingDto startSurvey(@PathVariable String email)
+      throws JsonProcessingException, UnsupportedEncodingException {
     return taskService.getSetting(email);
   }
 

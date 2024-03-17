@@ -9,5 +9,8 @@
   <include file="2024-03-10-3-create-table-sessions.xml" relativeToChangelogFile="true" />
   <include file="2024-03-12-1-create-table-settings.xml" relativeToChangelogFile="true" />
   <include file="2024-03-12-2-create-table-client-sessions.xml" relativeToChangelogFile="true" />
-
+  <include file="2024-03-16-1-create-tables-types-levels.xml" relativeToChangelogFile="true" />
+  <include file="2024-03-16-2-create-table-tasks.xml" relativeToChangelogFile="true" />
+  <include file="2024-03-16-3-create-table-answers.xml" relativeToChangelogFile="true" />
+  <include file="2024-03-16-4-create-table-client-answers.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>

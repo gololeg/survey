@@ -17,6 +17,10 @@
         <constraints nullable="false"/>
       </column>
     </createTable>
+    <insert tableName="accesses" schemaName="survey">
+      <column name="email" value="test_inc"/>
+      <column name="attempts_count" value="1000"/>
+    </insert>
   </changeSet>
 
 </databaseChangeLog>

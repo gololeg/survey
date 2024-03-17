@@ -48,7 +48,7 @@ public class Task {
   @Column(name = "create_date")
   private LocalDateTime createDate;
 
-  @ManyToOne
+  @ManyToOne(cascade = {CascadeType.MERGE})
   @JoinColumn(name = "level_id")
   private Level level;
 

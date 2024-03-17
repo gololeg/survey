@@ -1,0 +1,122 @@
+[
+  {
+    "name": "loop1",
+    "level": {
+      "id": 1,
+      "name": "LOW"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "name": null,
+        "text": "1\n2\n1\n2",
+        "value": null,
+        "isRight": true
+      },
+      {
+        "name": null,
+        "text": "1\n2\n2\n3",
+        "value": null,
+        "isRight": false
+      },
+      {
+        "name": null,
+        "text": "0\n1\n2\n1\n2\n3",
+        "value": null,
+        "isRight": false
+      },
+      {
+        "name": null,
+        "text": "1\n2\n3\n1\n2\n3",
+        "value": null,
+        "isRight": false
+      }
+    ],
+    "description": "Chhose right answer after executing javascript code"
+  },
+  {
+    "name": "typeof1",
+    "level": {
+      "id": 1,
+      "name": "LOW"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "name": null,
+        "text": "object",
+        "value": null,
+        "isRight": false
+      },
+      {
+        "name": null,
+        "text": "Object",
+        "value": null,
+        "isRight": false
+      },
+      {
+        "name": null,
+        "text": "function",
+        "value": null,
+        "isRight": false
+      },
+      {
+        "name": null,
+        "text": "string",
+        "value": null,
+        "isRight": true
+      }
+    ],
+    "description": "Choose right answer after executing javascript code"
+  },
+  {
+    "name": "collections1",
+    "level": {
+      "id": 2,
+      "name": "MIDDLE"
+    },
+    "type": {
+      "id": 1,
+      "name": "CHECKBOX"
+    },
+    "answers": [
+      {
+        "name": null,
+        "text": "Map",
+        "value": null,
+        "isRight": true
+      },
+      {
+        "name": null,
+        "text": "Object",
+        "value": null,
+        "isRight": false
+      },
+      {
+        "name": null,
+        "text": "Set",
+        "value": null,
+        "isRight": true
+      },
+      {
+        "name": null,
+        "text": "String",
+        "value": null,
+        "isRight": true
+      },
+      {
+        "name": null,
+        "text": "Array",
+        "value": null,
+        "isRight": true
+      }
+    ],
+    "description": "Instances of which classes are iterable"
+  }
+]
