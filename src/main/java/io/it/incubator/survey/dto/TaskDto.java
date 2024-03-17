@@ -35,7 +35,7 @@ public class TaskDto {
   private String description;
 
   public String getImageStr() {
-    return "data:image/jpg;base64," + Base64.toBase64String(getImage());
+    return getImage() != null ? "data:image/jpg;base64," + Base64.toBase64String(getImage()) : null;
   }
 
   public Task toEntity() {

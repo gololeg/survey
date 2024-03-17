@@ -10,7 +10,7 @@
 <p id="demo"></p>
 
 <h2 th:utext="${data.description}"></h2>
-<img th:src="${data.imageStr}"/>
+<img th:if="${data.imageStr != null}" th:src="${data.imageStr}"/>
 <form method="POST" th:action="${'/survey/'+surveyId}" th:object="${data}">
   <input type="hidden" id="taskId" name="id" th:value="${data.id}"/>
   <input type="hidden" id="nextTaskId" name="nextTaskId" th:value="${data.id}"/>
@@ -27,7 +27,7 @@
   </div>
   <div th:if="${data.type.name == 'CHECKBOX'}">
     <div th:each="answer: ${data.answers}">
-      <input th:name="answers" th:value="${answer.id}" type="checkbox">
+      <input th:name="ars" th:value="${answer.id}" type="checkbox">
       <textarea th:text="${answer.text}" th:rows="${answer.rowTextNum}"/>
       </input>
     </div>
