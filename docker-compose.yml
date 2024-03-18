@@ -10,7 +10,7 @@ services:
       - /app/node_modules
       - ./survey-ui:/app
   client-backend:
-    image: client
+    image: backend:0.0.1
     build:
       context: .
       dockerfile: Dockerfile
