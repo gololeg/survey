@@ -2,13 +2,17 @@
 document.addEventListener("DOMContentLoaded", (event) => {
     if (document.getElementById("taskIds")) {
         localStorage.setItem("taskIds", taskIds.value);
+        localStorage.setItem("startTime", new Date());
         localStorage.setItem("expiredDate", expiredDate.value);
+        localStorage.setItem("secondsCount", secondsCount.value);
     }
     startTimer()
 });
 
 function startTimer() {
-    var countDownDate = new Date(localStorage.getItem("expiredDate")).getTime();
+    let now = new Date(localStorage.getItem("startTime"))
+    now.setSeconds(now.getSeconds() + (+localStorage.getItem("secondsCount")))
+    var countDownDate = now.getTime();
 
     // Update the count down every 1 second
     var x = setInterval(function() {
@@ -35,6 +39,7 @@ function startTimer() {
             document.getElementById("demo").innerHTML = "EXPIRED";
             localStorage.removeItem("taskIds")
             localStorage.removeItem("expiredDate")
+            localStorage.removeItem("secondsCount")
             window.location.href = window.location.href + '/result'
         }
     }, 1000);

@@ -16,6 +16,8 @@
   <input type="hidden" id="nextTaskId" name="nextTaskId" th:value="${data.id}"/>
   <input th:if="${settings != null}" type="hidden" id="expiredDate"
          th:value="${settings.expiredDate}"/>
+  <input th:if="${settings != null}" type="hidden" id="secondsCount"
+         th:value="${settings.secondsCount}"/>
   <input th:if="${settings != null}" type="hidden" id="taskIds" th:value="${settings.taskIds}"/>
   <div th:if="${data.type.name == 'RADIO'}">
     <div th:each="answer: ${data.answers}">

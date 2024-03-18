@@ -58,7 +58,7 @@ public class ResultService {
     float p = 0;
     for (Task task : tasks) {
       if (map.get(task.getId()) == null) {
-        break;
+        map.put(task.getId(), new ArrayList<>());
       }
       String taskType = task.getType().getName();
       boolean isRadio = "RADIO".equals(taskType);
