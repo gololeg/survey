@@ -80,6 +80,10 @@ public class TaskService {
         .taskIds(taskIds)
         .surveyId(surveyId)
         .expiredDate(expiredDate)
+        .secondsCount(setting.getSurveyDuration(
+            taskLowIds.size()
+            , taskMiddleIds.size()
+            , taskHighIds.size()))
         .build();
   }
 }

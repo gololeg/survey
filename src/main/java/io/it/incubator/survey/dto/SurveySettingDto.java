@@ -11,5 +11,6 @@ public class SurveySettingDto {
   private List<Long> taskIds;
   private String surveyId;
   private String expiredDate;
+  private int secondsCount;
 
 }
