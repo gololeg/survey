@@ -118,5 +118,195 @@
       }
     ],
     "description": "Instances of which classes are iterable"
+  },
+  {
+    "name": "typeof2",
+    "level": {
+      "id": 1,
+      "name": "LOW"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "object",
+        "isRight": false
+      },
+      {
+        "text": "number",
+        "isRight": true
+      },
+      {
+        "text": "function",
+        "isRight": false
+      },
+      {
+        "text": "string",
+        "isRight": false
+      },
+      {
+        "text": "undefined",
+        "isRight": false
+      },
+      {
+        "text": "null",
+        "isRight": false
+      }
+    ],
+    "description": "Choose right answer after executing javascript code"
+  },
+  {
+    "name": "typeof3",
+    "level": {
+      "id": 1,
+      "name": "LOW"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "object",
+        "isRight": false
+      },
+      {
+        "text": "number",
+        "isRight": false
+      },
+      {
+        "text": "function",
+        "isRight": true
+      },
+      {
+        "text": "string",
+        "isRight": false
+      },
+      {
+        "text": "undefined",
+        "isRight": false
+      },
+      {
+        "text": "null",
+        "isRight": false
+      }
+    ],
+    "description": "Choose right answer after executing javascript code"
+  },
+  {
+    "name": "typeof4",
+    "level": {
+      "id": 1,
+      "name": "LOW"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "object",
+        "isRight": true
+      },
+      {
+        "text": "number",
+        "isRight": false
+      },
+      {
+        "text": "function",
+        "isRight": false
+      },
+      {
+        "text": "string",
+        "isRight": false
+      },
+      {
+        "text": "undefined",
+        "isRight": false
+      },
+      {
+        "text": "null",
+        "isRight": false
+      }
+    ],
+    "description": "Choose right answer after executing javascript code"
+  },
+  {
+    "name": "typeof5",
+    "level": {
+      "id": 1,
+      "name": "LOW"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "object",
+        "isRight": false
+      },
+      {
+        "text": "number",
+        "isRight": true
+      },
+      {
+        "text": "function",
+        "isRight": false
+      },
+      {
+        "text": "string",
+        "isRight": false
+      },
+      {
+        "text": "undefined",
+        "isRight": false
+      },
+      {
+        "text": "null",
+        "isRight": false
+      }
+    ],
+    "description": "Choose right answer after executing javascript code"
+  },
+  {
+    "name": "typeof6",
+    "level": {
+      "id": 1,
+      "name": "LOW"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "object",
+        "isRight": false
+      },
+      {
+        "text": "number",
+        "isRight": false
+      },
+      {
+        "text": "function",
+        "isRight": false
+      },
+      {
+        "text": "string",
+        "isRight": false
+      },
+      {
+        "text": "undefined",
+        "isRight": true
+      },
+      {
+        "text": "null",
+        "isRight": false
+      }
+    ],
+    "description": "Choose right answer after executing javascript code"
   }
 ]
