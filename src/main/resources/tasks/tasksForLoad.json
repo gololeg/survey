@@ -308,5 +308,193 @@
       }
     ],
     "description": "Choose right answer after executing javascript code"
+  },
+  {
+    "name": "varType1",
+    "level": {
+      "id": 1,
+      "name": "LOW"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "1\n2",
+        "isRight": false
+      },
+      {
+        "text": "2\n2",
+        "isRight": false
+      },
+      {
+        "text": "3\n3",
+        "isRight": true
+      },
+      {
+        "text": "1\n2\n3",
+        "isRight": false
+      },
+      {
+        "text": "2\n3",
+        "isRight": false
+      }
+    ],
+    "description": "Chhose right answer after executing javascript code"
+  },
+  {
+    "name": "varType2",
+    "level": {
+      "id": 1,
+      "name": "LOW"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "1\n2",
+        "isRight": true
+      },
+      {
+        "text": "2\n2",
+        "isRight": false
+      },
+      {
+        "text": "3\n3",
+        "isRight": false
+      },
+      {
+        "text": "1\n2\n3",
+        "isRight": false
+      },
+      {
+        "text": "2\n3",
+        "isRight": false
+      }
+    ],
+    "description": "Chhose right answer after executing javascript code"
+  },
+  {
+    "name": "context1",
+    "level": {
+      "id": 1,
+      "name": "LOW"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "1\n1",
+        "isRight": true
+      },
+      {
+        "text": "1\nundefined",
+        "isRight": false
+      },
+      {
+        "text": "undefined\nundefined",
+        "isRight": false
+      },
+      {
+        "text": "undefined\n1",
+        "isRight": false
+      }
+    ],
+    "description": "Choose right answer after executing javascript code"
+  },
+  {
+    "name": "context2",
+    "level": {
+      "id": 1,
+      "name": "LOW"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "1\n1",
+        "isRight": false
+      },
+      {
+        "text": "1\nundefined",
+        "isRight": true
+      },
+      {
+        "text": "undefined\nundefined",
+        "isRight": false
+      },
+      {
+        "text": "undefined\n1",
+        "isRight": false
+      }
+    ],
+    "description": "Choose right answer after executing javascript code"
+  },
+  {
+    "name": "context3",
+    "level": {
+      "id": 1,
+      "name": "LOW"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "0\n0",
+        "isRight": false
+      },
+      {
+        "text": "0\nundefined",
+        "isRight": false
+      },
+      {
+        "text": "undefined\nundefined",
+        "isRight": true
+      },
+      {
+        "text": "undefined\n0",
+        "isRight": false
+      }
+    ],
+    "description": "Choose right answer after executing javascript code"
+  },
+  {
+    "name": "context4",
+    "level": {
+      "id": 1,
+      "name": "LOW"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "0\n0",
+        "isRight": false
+      },
+      {
+        "text": "0\nundefined",
+        "isRight": true
+      },
+      {
+        "text": "undefined\nundefined",
+        "isRight": false
+      },
+      {
+        "text": "undefined\n0",
+        "isRight": false
+      }
+    ],
+    "description": "Choose right answer after executing javascript code"
   }
 ]
