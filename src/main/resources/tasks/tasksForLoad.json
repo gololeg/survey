@@ -496,5 +496,73 @@
       }
     ],
     "description": "Choose right answer after executing javascript code"
+  },
+  {
+    "name": "static1",
+    "level": {
+      "id": 2,
+      "name": "MIDDLE"
+    },
+    "type": {
+      "id": 1,
+      "name": "CHECKBOX"
+    },
+    "answers": [
+      {
+        "text": "freeze",
+        "isRight": true
+      },
+      {
+        "text": "isArray",
+        "isRight": false
+      },
+      {
+        "text": "toString",
+        "isRight": false
+      },
+      {
+        "text": "hasOwnProperty",
+        "isRight": false
+      },
+      {
+        "text": "assign",
+        "isRight": true
+      }
+    ],
+    "description": "Which methods are static for Object class in javascript"
+  },
+  {
+    "name": "promise1",
+    "level": {
+      "id": 2,
+      "name": "MIDDLE"
+    },
+    "type": {
+      "id": 1,
+      "name": "CHECKBOX"
+    },
+    "answers": [
+      {
+        "text": "Promise.all(new Set())",
+        "isRight": true
+      },
+      {
+        "text": "Promise.all(Set)",
+        "isRight": false
+      },
+      {
+        "text": "Promise.all(new Object())",
+        "isRight": false
+      },
+      {
+        "text": "Promise.all([])",
+        "isRight": true
+      },
+      {
+        "text": "Promise.all([1,2,3])",
+        "isRight": true
+      }
+    ],
+    "description": "Which javascript code executed without errors?"
   }
 ]
