@@ -564,5 +564,545 @@
       }
     ],
     "description": "Which javascript code executed without errors?"
+  },
+  {
+    "name": "dp1",
+    "level": {
+      "id": 3,
+      "name": "HIGH"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "Builder",
+        "isRight": true
+      },
+      {
+        "text": "Factory method",
+        "isRight": false
+      },
+      {
+        "text": "Singleton",
+        "isRight": false
+      },
+      {
+        "text": "Abstract factory",
+        "isRight": false
+      },
+      {
+        "text": "Adapter",
+        "isRight": false
+      },
+      {
+        "text": "Decorator",
+        "isRight": false
+      },
+      {
+        "text": "Facade",
+        "isRight": false
+      },
+      {
+        "text": "Iterator",
+        "isRight": false
+      },
+      {
+        "text": "Command",
+        "isRight": false
+      },
+      {
+        "text": "Strategy",
+        "isRight": false
+      }
+    ],
+    "description": "Which design pattern best matches the code presented?"
+  },
+  {
+    "name": "dp2",
+    "level": {
+      "id": 3,
+      "name": "HIGH"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "Builder",
+        "isRight": false
+      },
+      {
+        "text": "Factory method",
+        "isRight": true
+      },
+      {
+        "text": "Singleton",
+        "isRight": false
+      },
+      {
+        "text": "Abstract factory",
+        "isRight": false
+      },
+      {
+        "text": "Adapter",
+        "isRight": false
+      },
+      {
+        "text": "Decorator",
+        "isRight": false
+      },
+      {
+        "text": "Facade",
+        "isRight": false
+      },
+      {
+        "text": "Iterator",
+        "isRight": false
+      },
+      {
+        "text": "Command",
+        "isRight": false
+      },
+      {
+        "text": "Strategy",
+        "isRight": false
+      }
+    ],
+    "description": "Which design pattern best matches the code presented?"
+  },
+  {
+    "name": "dp3",
+    "level": {
+      "id": 3,
+      "name": "HIGH"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "Builder",
+        "isRight": false
+      },
+      {
+        "text": "Factory method",
+        "isRight": false
+      },
+      {
+        "text": "Singleton",
+        "isRight": true
+      },
+      {
+        "text": "Abstract factory",
+        "isRight": false
+      },
+      {
+        "text": "Adapter",
+        "isRight": false
+      },
+      {
+        "text": "Decorator",
+        "isRight": false
+      },
+      {
+        "text": "Facade",
+        "isRight": false
+      },
+      {
+        "text": "Iterator",
+        "isRight": false
+      },
+      {
+        "text": "Command",
+        "isRight": false
+      },
+      {
+        "text": "Strategy",
+        "isRight": false
+      }
+    ],
+    "description": "Which design pattern best matches the code presented?"
+  },
+  {
+    "name": "dp4",
+    "level": {
+      "id": 3,
+      "name": "HIGH"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "Builder",
+        "isRight": false
+      },
+      {
+        "text": "Factory method",
+        "isRight": false
+      },
+      {
+        "text": "Singleton",
+        "isRight": false
+      },
+      {
+        "text": "Abstract factory",
+        "isRight": true
+      },
+      {
+        "text": "Adapter",
+        "isRight": false
+      },
+      {
+        "text": "Decorator",
+        "isRight": false
+      },
+      {
+        "text": "Facade",
+        "isRight": false
+      },
+      {
+        "text": "Iterator",
+        "isRight": false
+      },
+      {
+        "text": "Command",
+        "isRight": false
+      },
+      {
+        "text": "Strategy",
+        "isRight": false
+      }
+    ],
+    "description": "Which design pattern best matches the code presented?"
+  },
+  {
+    "name": "dp5",
+    "level": {
+      "id": 3,
+      "name": "HIGH"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "Builder",
+        "isRight": false
+      },
+      {
+        "text": "Factory method",
+        "isRight": false
+      },
+      {
+        "text": "Singleton",
+        "isRight": false
+      },
+      {
+        "text": "Abstract factory",
+        "isRight": false
+      },
+      {
+        "text": "Adapter",
+        "isRight": true
+      },
+      {
+        "text": "Decorator",
+        "isRight": false
+      },
+      {
+        "text": "Facade",
+        "isRight": false
+      },
+      {
+        "text": "Iterator",
+        "isRight": false
+      },
+      {
+        "text": "Command",
+        "isRight": false
+      },
+      {
+        "text": "Strategy",
+        "isRight": false
+      }
+    ],
+    "description": "Which design pattern best matches the code presented?"
+  },
+  {
+    "name": "dp6",
+    "level": {
+      "id": 3,
+      "name": "HIGH"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "Builder",
+        "isRight": false
+      },
+      {
+        "text": "Factory method",
+        "isRight": false
+      },
+      {
+        "text": "Singleton",
+        "isRight": false
+      },
+      {
+        "text": "Abstract factory",
+        "isRight": false
+      },
+      {
+        "text": "Adapter",
+        "isRight": false
+      },
+      {
+        "text": "Decorator",
+        "isRight": true
+      },
+      {
+        "text": "Facade",
+        "isRight": false
+      },
+      {
+        "text": "Iterator",
+        "isRight": false
+      },
+      {
+        "text": "Command",
+        "isRight": false
+      },
+      {
+        "text": "Strategy",
+        "isRight": false
+      }
+    ],
+    "description": "Which design pattern best matches the code presented?"
+  },
+  {
+    "name": "dp7",
+    "level": {
+      "id": 3,
+      "name": "HIGH"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "Builder",
+        "isRight": false
+      },
+      {
+        "text": "Factory method",
+        "isRight": false
+      },
+      {
+        "text": "Singleton",
+        "isRight": false
+      },
+      {
+        "text": "Abstract factory",
+        "isRight": false
+      },
+      {
+        "text": "Adapter",
+        "isRight": false
+      },
+      {
+        "text": "Decorator",
+        "isRight": false
+      },
+      {
+        "text": "Facade",
+        "isRight": true
+      },
+      {
+        "text": "Iterator",
+        "isRight": false
+      },
+      {
+        "text": "Command",
+        "isRight": false
+      },
+      {
+        "text": "Strategy",
+        "isRight": false
+      }
+    ],
+    "description": "Which design pattern best matches the code presented?"
+  },
+  {
+    "name": "dp8",
+    "level": {
+      "id": 3,
+      "name": "HIGH"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "Builder",
+        "isRight": false
+      },
+      {
+        "text": "Factory method",
+        "isRight": false
+      },
+      {
+        "text": "Singleton",
+        "isRight": false
+      },
+      {
+        "text": "Abstract factory",
+        "isRight": false
+      },
+      {
+        "text": "Adapter",
+        "isRight": false
+      },
+      {
+        "text": "Decorator",
+        "isRight": false
+      },
+      {
+        "text": "Facade",
+        "isRight": false
+      },
+      {
+        "text": "Iterator",
+        "isRight": true
+      },
+      {
+        "text": "Command",
+        "isRight": false
+      },
+      {
+        "text": "Strategy",
+        "isRight": false
+      }
+    ],
+    "description": "Which design pattern best matches the code presented?"
+  },
+  {
+    "name": "dp9",
+    "level": {
+      "id": 3,
+      "name": "HIGH"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "Builder",
+        "isRight": false
+      },
+      {
+        "text": "Factory method",
+        "isRight": false
+      },
+      {
+        "text": "Singleton",
+        "isRight": false
+      },
+      {
+        "text": "Abstract factory",
+        "isRight": false
+      },
+      {
+        "text": "Adapter",
+        "isRight": false
+      },
+      {
+        "text": "Decorator",
+        "isRight": false
+      },
+      {
+        "text": "Facade",
+        "isRight": false
+      },
+      {
+        "text": "Iterator",
+        "isRight": false
+      },
+      {
+        "text": "Command",
+        "isRight": true
+      },
+      {
+        "text": "Strategy",
+        "isRight": false
+      }
+    ],
+    "description": "Which design pattern best matches the code presented?"
+  },
+  {
+    "name": "dp10",
+    "level": {
+      "id": 3,
+      "name": "HIGH"
+    },
+    "type": {
+      "id": 2,
+      "name": "RADIO"
+    },
+    "answers": [
+      {
+        "text": "Builder",
+        "isRight": false
+      },
+      {
+        "text": "Factory method",
+        "isRight": false
+      },
+      {
+        "text": "Singleton",
+        "isRight": false
+      },
+      {
+        "text": "Abstract factory",
+        "isRight": false
+      },
+      {
+        "text": "Adapter",
+        "isRight": false
+      },
+      {
+        "text": "Decorator",
+        "isRight": false
+      },
+      {
+        "text": "Facade",
+        "isRight": false
+      },
+      {
+        "text": "Iterator",
+        "isRight": false
+      },
+      {
+        "text": "Command",
+        "isRight": false
+      },
+      {
+        "text": "Strategy",
+        "isRight": true
+      }
+    ],
+    "description": "Which design pattern best matches the code presented?"
   }
 ]
