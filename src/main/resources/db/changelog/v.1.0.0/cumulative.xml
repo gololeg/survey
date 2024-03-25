@@ -13,4 +13,5 @@
   <include file="2024-03-16-2-create-table-tasks.xml" relativeToChangelogFile="true" />
   <include file="2024-03-16-3-create-table-answers.xml" relativeToChangelogFile="true" />
   <include file="2024-03-16-4-create-table-client-answers.xml" relativeToChangelogFile="true" />
+  <include file="2024-03-25-1-create-columns-table-client-sessions.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>

@@ -6,6 +6,7 @@ import io.it.incubator.survey.repo.ClientSessionRepository;
 import io.it.incubator.survey.repo.SettingRepository;
 import io.it.incubator.survey.repo.TaskRepository;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -75,7 +76,8 @@ public class TaskService {
         , taskMiddleIds.size()
         , taskHighIds.size()));
     String surveyId = UUID.randomUUID().toString().replaceAll("-", "");
-    clientSessionRepository.save(new ClientSession(surveyId, expiredDate, taskIds.toString()));
+    clientSessionRepository.save(new ClientSession(surveyId, expiredDate, taskIds.toString(),
+        email, LocalDateTime.now()));
     return SurveySettingDto.builder()
         .taskIds(taskIds)
         .surveyId(surveyId)
