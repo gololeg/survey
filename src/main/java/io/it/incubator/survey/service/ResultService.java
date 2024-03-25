@@ -35,7 +35,8 @@ public class ResultService {
   private AnswerRepository answerRepository;
 
   public ResultDto getResult(String surveyId) throws JsonProcessingException {
-    String taskIdsStr = clientSessionRepository.findById(surveyId).get().getTaskIds();
+    var clientSession = clientSessionRepository.findById(surveyId).get();
+    String taskIdsStr = clientSession.getTaskIds();
     ObjectMapper om = new ObjectMapper();
     List<ResultTaskDto> results = new ArrayList<>();
     for (Long taskId : om.readValue(taskIdsStr, Long[].class)) {
@@ -50,6 +51,7 @@ public class ResultService {
         .results(results)
         .commonPercent(calcPercent(toMap(clientAnswerRepository.findBySurveyId(surveyId)),
             taskRepository.findAllById(Arrays.asList(om.readValue(taskIdsStr, Long[].class)))))
+        .email(clientSession.getEmail())
         .build();
 
   }

@@ -19,4 +19,5 @@ public class ResultDto {
   private float middleLevelPercent;
   private float highLevelPercent;
   private float commonPercent;
+  private String email;
 }
