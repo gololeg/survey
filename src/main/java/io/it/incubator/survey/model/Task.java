@@ -14,7 +14,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -62,6 +61,11 @@ public class Task {
   @Column(name = "description")
   private String description;
 
+  public TaskDto toDtoWithRightAnswers() {
+    TaskDto taskDto = toDto();
+    taskDto.setAnswers(getAnswers().stream().map(a -> a.toDtoWithRightAnswer()).toList());
+    return taskDto;
+  }
 
   public TaskDto toDto() {
     return TaskDto.builder()

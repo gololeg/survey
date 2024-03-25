@@ -53,6 +53,12 @@ public class Answer {
   @JoinColumn(name = "task_id")
   private Task task;
 
+  public AnswerDto toDtoWithRightAnswer() {
+    AnswerDto answerDto = toDto();
+    answerDto.setRight(getIsRight());
+    return answerDto;
+  }
+
   public AnswerDto toDto() {
     return AnswerDto.builder()
         .id(getId())

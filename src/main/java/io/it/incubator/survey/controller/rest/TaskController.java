@@ -51,6 +51,6 @@ public class TaskController {
 
   @GetMapping("/{taskId}")
   public ResponseEntity<TaskDto> one(@PathVariable Long taskId) {
-    return ResponseEntity.ok(taskRepository.findById(taskId).get().toDto());
+    return ResponseEntity.ok(taskRepository.findById(taskId).get().toDtoWithRightAnswers());
   }
 }
