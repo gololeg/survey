@@ -34,6 +34,8 @@ public class TaskDto {
 
   private String description;
 
+  private boolean isActive;
+
   public String getImageStr() {
     return getImage() != null ? "data:image/jpg;base64," + Base64.toBase64String(getImage()) : null;
   }
@@ -50,6 +52,7 @@ public class TaskDto {
     task.setAnswers(getAnswers().stream()
         .map(a -> new Answer(a.getName(), a.getText(), a.getValue(), a.isRight(), task))
         .toList());
+    task.setActive(isActive());
     return task;
   }
 

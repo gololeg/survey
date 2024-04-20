@@ -47,6 +47,9 @@ public class Task {
   @Column(name = "create_date")
   private LocalDateTime createDate;
 
+  @Column(name = "is_active")
+  private boolean isActive;
+
   @ManyToOne(cascade = {CascadeType.MERGE})
   @JoinColumn(name = "level_id")
   private Level level;
@@ -70,6 +73,7 @@ public class Task {
   public TaskDto toDto() {
     return TaskDto.builder()
         .id(getId())
+        .isActive(isActive())
         .description(getDescription())
         .name(getName())
         .image(getImage())
