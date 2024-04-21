@@ -1,6 +1,5 @@
 package io.it.incubator.survey.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.it.incubator.survey.dto.TaskDto;
 import io.it.incubator.survey.model.Answer;
 import io.it.incubator.survey.model.Task;
@@ -9,8 +8,6 @@ import io.it.incubator.survey.repo.TaskRepository;
 import io.it.incubator.survey.repo.TypeRepository;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,15 +24,10 @@ public class AdminTaskService {
   private TypeRepository typeRepository;
 
   public TaskDto save(TaskDto taskDto) throws IOException {
-    ObjectMapper om = new ObjectMapper();
-    Answer[] arr = om.readValue(taskDto.getStrAnswers(), Answer[].class);
-    List<Answer> answers =
-        Arrays.asList(om.readValue(taskDto.getStrAnswers(), Answer[].class));
-    Task task = new Task(0L, taskDto.getDescription(), taskDto.getName(),
-        taskDto.getImage(),
+    Task task = new Task(0L, taskDto.getDescription(), taskDto.getName(), taskDto.getImage(),
         levelRepository.getReferenceById(taskDto.getLevel().getId()),
-        typeRepository.getReferenceById(taskDto.getType().getId()),
-        answers
+        typeRepository.getReferenceById(taskDto.getType().getId()), taskDto.getAnswers().stream()
+        .map(a -> new Answer(a.getName(), a.getText(), a.getValue(), a.isRight(), null)).toList()
     );
 
     for (Answer a : task.getAnswers()) {
