@@ -58,7 +58,7 @@ public class Task {
   @JoinColumn(name = "type_id")
   private Type type;
 
-  @OneToMany(mappedBy = "task", cascade = {CascadeType.PERSIST})
+  @OneToMany(mappedBy = "task", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
   private List<Answer> answers;
 
   @Column(name = "description")
@@ -93,6 +93,7 @@ public class Task {
     return TaskDto.builder()
         .id(getId())
         .description(getDescription())
+        .isActive(isActive)
         .name(getName())
         .level(LevelDto.builder()
             .id(getLevel().getId())

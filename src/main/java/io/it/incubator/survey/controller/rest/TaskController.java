@@ -10,11 +10,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -39,14 +40,17 @@ public class TaskController {
     return ResponseEntity.ok(adminTaskService.save(newTask));
   }
 
-  @RequestMapping(value = "/{taskId}", method = RequestMethod.PUT)
-  public ResponseEntity<TaskDto> editTask(@RequestBody TaskDto taskDto, @PathVariable Long taskId)
-      throws IOException {
-    Task task = taskRepository.findById(taskId).get();
-    task.setName(taskDto.getName());
-    task.setDescription(taskDto.getDescription());
-    task.setImage(taskDto.getFile().getBytes());
-    return ResponseEntity.ok(taskRepository.save(task).toDto());
+  @PutMapping
+  public ResponseEntity<TaskDto> editTask(@RequestBody TaskDto editTask) throws IOException {
+    return ResponseEntity.ok(adminTaskService.save(editTask));
+  }
+
+  @PatchMapping("/{taskId}/active")
+  public ResponseEntity<TaskDto> activeTask(@PathVariable Long taskId){
+    Task task = taskRepository.getReferenceById(taskId);
+    task.setActive(!task.isActive());
+    taskRepository.save(task);
+    return ResponseEntity.ok(task.toCommonDto());
   }
 
   @GetMapping("/{taskId}")

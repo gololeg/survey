@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,12 +16,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "levels")
 @Data
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class Level {
-
-  public Level(int id, String name) {
-    this.id = id;
-    this.name = name;
-  }
 
   @Id
   private int id;

@@ -24,16 +24,15 @@ public class AdminTaskService {
   private TypeRepository typeRepository;
 
   public TaskDto save(TaskDto taskDto) throws IOException {
-    Task task = new Task(0L, taskDto.getDescription(), taskDto.getName(), taskDto.getImage(),
-        levelRepository.getReferenceById(taskDto.getLevel().getId()),
-        typeRepository.getReferenceById(taskDto.getType().getId()), taskDto.getAnswers().stream()
-        .map(a -> new Answer(a.getName(), a.getText(), a.getValue(), a.isRight(), null)).toList()
-    );
-
-    for (Answer a : task.getAnswers()) {
-      a.setTask(task);
+    Task task;
+    if (taskDto.getId() == 0L) {
+      task = taskDto.toEntity(new Task());
+      task.setCreateDate(LocalDateTime.now());
+    } else {
+      task = taskDto.toEntity(taskRepository.findById(taskDto.getId()).get());
     }
-    task.setCreateDate(LocalDateTime.now());
+  task.setType(typeRepository.getReferenceById(taskDto.getType().getId()));
+    task.setLevel(levelRepository.getReferenceById(taskDto.getLevel().getId()));
     return taskRepository.save(task).toDto();
   }
 }

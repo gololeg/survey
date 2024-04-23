@@ -1,11 +1,9 @@
 package io.it.incubator.survey.controller.rest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.it.incubator.survey.dto.ResultDto;
 import io.it.incubator.survey.dto.SurveySettingDto;
 import io.it.incubator.survey.dto.TaskDto;
-import io.it.incubator.survey.model.Task;
 import io.it.incubator.survey.repo.TaskRepository;
 import io.it.incubator.survey.service.AccessService;
 import io.it.incubator.survey.service.ClientAnswerService;
@@ -16,7 +14,6 @@ import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,7 +55,8 @@ public class SurveyController {
       @RequestBody TaskDto task) throws IOException, ParseException {
     accessService.checkTimeout(surveyId);
 
-    clientAnswerService.saveAnswers(task.getArs(), surveyId, task.getId());
+    clientAnswerService.saveAnswers(task.getAnswers().stream().map(a -> a.getId()).toList(),
+        surveyId, task.getId());
     return ResponseEntity.ok(surveyId);
   }
 

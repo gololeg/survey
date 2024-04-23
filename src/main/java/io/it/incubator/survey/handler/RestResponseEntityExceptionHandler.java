@@ -18,6 +18,7 @@ public class RestResponseEntityExceptionHandler
       = {RuntimeException.class})
   public ResponseEntity<Object> handleConflict(
       RuntimeException ex, WebRequest request) {
+    ex.printStackTrace();
     String bodyOfResponse = "This should be application specific";
     return handleExceptionInternal(ex, new ResponseError(ex),
         new HttpHeaders(),
