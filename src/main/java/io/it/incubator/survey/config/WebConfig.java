@@ -25,7 +25,9 @@ public class WebConfig implements WebMvcConfigurer {
   public void addCorsMappings(CorsRegistry registry) {
     registry.addMapping("/api/v1/**")
         .allowedOrigins(adminUrl)
-        .allowCredentials(true);
+        .allowCredentials(true)
+        .allowedMethods("*")
+        .allowedHeaders("*");
   }
 
   @Bean
